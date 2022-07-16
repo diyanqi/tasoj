@@ -1,0 +1,111 @@
+<br>
+
+<div class="mdui-card">
+
+  <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
+  <div class="mdui-card-media">
+    <img src="/static/card.jpg" />
+
+    <!-- 卡片中可以包含一个或多个菜单按钮 -->
+    <div class="mdui-card-menu">
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-white">
+        <i class="mdui-icon material-icons">share</i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 卡片的标题和副标题 -->
+  <div class="mdui-card-primary">
+    <div class="mdui-card-primary-title">登录</div>
+    <div class="mdui-card-primary-subtitle">登录TasOJ账号</div>
+  </div>
+
+  <!-- 卡片的内容 -->
+  <div class="mdui-card-content">
+    <div class="mdui-textfield mdui-textfield-floating-label">
+      <label class="mdui-textfield-label">邮箱</label>
+      <input class="mdui-textfield-input" type="text" id="username" />
+    </div>
+    <div class="mdui-textfield mdui-textfield-floating-label">
+      <label class="mdui-textfield-label">密码</label>
+      <input class="mdui-textfield-input" type="password" id="password" />
+    </div>
+<!-- recaptcha -->
+<script type="text/javascript">
+  var verifyCallback = function(response) {
+    sbmt(response);
+  };
+  var widgetId1;
+  var onloadCallback = function() {
+    // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+    // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+    widgetId1 = grecaptcha.render('example1', {
+      'sitekey' : '6LeXLiIeAAAAAFpGFIIdMs6aKABBOJ0fbABqMhwB',
+      'theme' : 'light'
+    });
+  };
+</script>
+<!-- The g-recaptcha-response string displays in an alert message upon submit. -->
+<form action="javascript:sbmt(grecaptcha.getResponse(widgetId1));">
+  <div id="example1"></div>
+  <br>
+  <input type="submit" value="确认登录" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">
+</form>
+</div>
+<script src="https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+</script>
+
+  <!-- 卡片的按钮 -->
+  <div class="mdui-card-actions">
+    <button class="mdui-btn mdui-ripple" onclick="location.href='/register'">注册</button>
+    <button class="mdui-btn mdui-ripple">忘记密码</button>
+    <button class="mdui-btn mdui-btn-icon mdui-float-right">
+      <i class="mdui-icon material-icons">expand_more</i>
+    </button>
+  </div>
+
+</div>
+<script>
+  function sbmt(captcha) {
+    var username = document.getElementById("username").value;
+    var pass1 = document.getElementById("password").value;
+    if (true) {
+      obj = { 'username': username, 'password': pass1, 'captcha': captcha };
+      var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+      httpRequest.open('POST', '/login_request', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+      httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+      httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+      httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+          var json = httpRequest.responseText;//获取到服务端返回的数据
+          console.log(kk = JSON.parse(json));
+          if (kk['status'] == 'failed') {
+            if (kk['msg'] == 'captcha_error') {
+              mdui.snackbar("验证码错误，请刷新页面重新验证reCAPTCHA！");
+            } else if (kk['msg'] == 'username_or_password_wrong') {
+              mdui.snackbar("用户名或密码错误，请刷新页面重新验证reCAPTCHA！");
+            }
+          } else {
+            mdui.snackbar({
+              message: '登录成功',
+              buttonText: '没毛病',
+              onClick: function () {
+                location.href = "/";
+              },
+              onButtonClick: function () {
+                location.href = "/";
+              },
+              onClose: function () {
+                location.href = "/";
+              }
+            });
+          }
+        }
+      };
+    } else {
+      mdui.snackbar("两个密码不匹配，请检查！")
+    }
+
+  }
+</script>

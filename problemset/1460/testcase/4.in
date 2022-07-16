@@ -1,0 +1,7 @@
+6
+HBox hb
+VBox vb
+hb.pack(vb)
+Widget wi(47,13)
+hb.pack(wi)
+vb.pack(wi)

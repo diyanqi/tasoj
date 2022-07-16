@@ -1,0 +1,1 @@
+{"status": "Compile Error", "problem_id": 1000, "language": "openjdk-11", "username": "toby_lai@126.com", "code": "public class Oj{\r\n\tpublic static void main(String[] args) {\r\n\t\tSystem.out.println(\"Hello, world!\");\r\n\t}\r\n}", "msg": "scriptfile.java:1: error: class Oj is public, should be declared in a file named Oj.java\npublic class Oj{\n       ^\n1 error\n"}

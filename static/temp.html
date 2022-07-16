@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/static/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <!-- 引入editormd样式文件 -->
+    <link rel="stylesheet" href="/static/editor.md/css/editormd.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="/static/editor.md/editormd.js"></script>
+    <!-- MDUI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css" />
+    <title>tasOJ -
+        <!-- title -->
+    </title>
+    <style>
+        .tagchip {
+            padding: 2px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 5px;
+        }
+
+        /*定义滚动条样式（高宽及背景）*/
+        ::-webkit-scrollbar {
+            width: 6px;
+            /* 滚动条宽度， width：对应竖滚动条的宽度  height：对应横滚动条的高度*/
+            background: #ccc;
+        }
+
+        /*定义滚动条轨道（凹槽）样式*/
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            /* 较少使用 */
+            border-radius: 3px;
+        }
+
+        /*定义滑块 样式*/
+        ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            height: 100px;
+            /* 滚动条滑块长度 */
+            background-color: #007acc;
+        }
+    </style>
+    <style>
+        .avatar {
+            display: block;
+            min-width: 32px;
+        }
+    </style>
+</head>
+
+<body
+    class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded"
+    _c_t_common="1">
+    <script>
+        kkname = 'theme-primary'
+        kkvalue = window.localStorage.getItem(kkname);
+        if (kkvalue != undefined) {
+            c = document.getElementsByTagName("body")[0].className.split(" ");
+            for (j in c) {
+                if (c[j].indexOf(kkname) != -1) {
+                    document.getElementsByTagName("body")[0].classList.remove(c[j]);
+                    console.log("removed");
+                }
+            }
+            document.getElementsByTagName("body")[0].classList.add("mdui-" + kkname + "-" + kkvalue);
+
+            kkname = 'theme-layout'
+            kkvalue = window.localStorage.getItem(kkname);
+            c = document.getElementsByTagName("body")[0].className.split(" ");
+            for (j in c) {
+                if (c[j].indexOf(kkname) != -1) {
+                    document.getElementsByTagName("body")[0].classList.remove(c[j]);
+                    console.log("removed");
+                }
+            }
+            document.getElementsByTagName("body")[0].classList.add("mdui-" + kkname + "-" + kkvalue);
+
+            kkname = 'theme-accent'
+            kkvalue = window.localStorage.getItem(kkname);
+            c = document.getElementsByTagName("body")[0].className.split(" ");
+            for (j in c) {
+                if (c[j].indexOf(kkname) != -1) {
+                    document.getElementsByTagName("body")[0].classList.remove(c[j]);
+                    console.log("removed");
+                }
+            }
+            document.getElementsByTagName("body")[0].classList.add("mdui-" + kkname + "-" + kkvalue);
+        }
+    </script>
+    <header class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+                mdui-drawer="{target: '#main-drawer', swipe: true}"><i class="mdui-icon material-icons">menu</i></span>
+            <a href="../" class="mdui-typo-headline mdui-hidden-xs">tasOJ</a>
+            <a href="./" class="mdui-typo-title">
+                <!-- title -->
+            </a>
+            <div class="mdui-toolbar-spacer"></div>
+            <style>
+                .mc-appbar .toolbar .login,
+                .mc-appbar .toolbar .register {
+                    margin-right: 8px !important;
+                    padding: 0 8px;
+                    min-width: 0px !important;
+                    width: 10px !important;
+                    max-width: 5px;
+                }
+
+                .mdui-card {
+                    border-radius: 10px;
+                }
+
+                .mdui-list-item .mdui-collapse-item-body {
+                    border-radius: 0px 10px 0px 10px;
+                }
+
+                .mdui-sbbutton {
+                    position: relative;
+                    display: inline-block;
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    height: 36px;
+                    margin: 0;
+                    min-width: 0%;
+                    padding: 0 16px;
+                    overflow: hidden;
+                    color: inherit;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 36px;
+                    letter-spacing: .04em;
+                    white-space: nowrap;
+                    text-align: center;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    vertical-align: middle;
+                    background: 0 0;
+                    border: none;
+                    border-radius: 2px;
+                    outline: 0;
+                    cursor: pointer;
+                    -webkit-transition: all .2s cubic-bezier(.4, 0, .2, 1), -webkit-box-shadow .2s cubic-bezier(.4, 0, 1, 1);
+                    transition: all .2s cubic-bezier(.4, 0, .2, 1), -webkit-box-shadow .2s cubic-bezier(.4, 0, 1, 1);
+                    transition: all .2s cubic-bezier(.4, 0, .2, 1), box-shadow .2s cubic-bezier(.4, 0, 1, 1);
+                    transition: all .2s cubic-bezier(.4, 0, .2, 1), box-shadow .2s cubic-bezier(.4, 0, 1, 1), -webkit-box-shadow .2s cubic-bezier(.4, 0, 1, 1);
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    -ms-touch-action: manipulation;
+                    touch-action: manipulation;
+                    will-change: box-shadow;
+                    zoom: 1;
+                    -webkit-user-drag: none;
+                }
+            </style>
+            <!-- <div class="mdui-collapse-item-body mdui-list-item mdui-ripple" id="loginn" hidden="hidden">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">last_page</i>
+                <a href='javascript:login();' class="mdui-list-item-content">登录</a>
+            </div>
+            <div class="mdui-collapse-item-body mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-indigo">navigation</i>
+                <a href='javascript:register();' class="mdui-list-item-content">注册</a>
+            </div> -->
+            <div class="login mdui-btn mdui-sbbutton mdui-btn-dense" id="loginn" hidden="hidden" onclick="login();">登录
+            </div>
+            <div class="register mdui-btn mdui-sbbutton mdui-btn-dense" id="registerr" hidden="hidden"
+                onclick="register();">注册</div>
+            <a class="notification mdui-btn mdui-btn-icon" hidden id="ppp2" mdui-tooltip="{content: '没有未读通知'}"
+                href="/notifications">
+                <span hidden id="cnt" class="count" style="position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 8px;
+                height: 8px;
+                margin-top: -14px;
+                margin-left: 2px;
+                background: #1a73e8;
+                border-radius: 50%;"></span>
+                <i class="mdui-icon material-icons mdui-text-color-theme-icon">notifications</i></a>
+            <div class="avatar" hidden="hidden" id='ppp' mdui-tooltip="{content: '点击进入个人主页'}">
+                <div class="user mdui-btn mdui-btn-icon mdui-btn-dense">
+                    <img src="" width="32" height="32" id="avatar">
+                </div>
+            </div>
+            <!-- <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white"
+                mdui-dialog="{target: '#dialog-docs-theme'}" mdui-tooltip="{content: '设置主题'}" hidden><i
+                    class="mdui-icon material-icons">color_lens</i></span> -->
+        </div>
+    </header>
+
+    <div class="mdui-drawer" id="main-drawer">
+        <div class="mdui-list" mdui-collapse="{accordion: true}" style="margin-bottom: 76px;">
+            <div class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">account_balance</i>
+                <a href='/' class="mdui-list-item-content">首页</a>
+            </div>
+            <div class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-orange">book</i>
+                <a href='/problem/list' class="mdui-list-item-content">题库</a>
+            </div>
+            <div class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">donut_small</i>
+                <a href='/judgements/list' class="mdui-list-item-content">状态</a>
+            </div>
+            <div class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue-grey">trending_up</i>
+                <a href='/contest/list' class="mdui-list-item-content">比赛</a>
+            </div>
+            <div class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+                <a href='/study' class="mdui-list-item-content">学习</a>
+            </div>
+            <div class="mdui-collapse-item mdui-collapse-item-close">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-grey">chat</i>
+                    <div class="mdui-list-item-content">圈子</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-collapse-item-body mdui-list">
+                    <a href="/chat/list" class="mdui-list-item mdui-ripple">犇犇</a>
+                    <a href="/ask/list" class="mdui-list-item mdui-ripple">问答</a>
+                    <a href="/article/list" class="mdui-list-item mdui-ripple">文章</a>
+                </div>
+            </div>
+            <div class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-amber">search</i>
+                <a href='/search' class="mdui-list-item-content">聚合搜索</a>
+            </div>
+            <div class="mdui-collapse-item mdui-collapse-item-close">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-teal">build</i>
+                    <div class="mdui-list-item-content">工具箱</div>
+                    <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+                </div>
+                <div class="mdui-collapse-item-body mdui-list">
+                    <a href="/ide" class="mdui-list-item mdui-ripple">在线IDE</a>
+                </div>
+                <div class="mdui-collapse-item-body mdui-list">
+                    <a href="//sm.ms" class="mdui-list-item mdui-ripple" target="__blank">sm.ms 图床&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><i class="mdui-icon material-icons">open_in_new</i></small></a>
+                </div>
+            </div>
+            <div class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-pink">info_outline</i>
+                <a href='/about' class="mdui-list-item-content">关于</a>
+            </div>
+            <div class="mdui-list-item mdui-ripple">
+                <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">bug_report</i>
+                <a href='/buglist' class="mdui-list-item-content">TasOJ Buglist</a>
+            </div>
+        </div>
+    </div>
+    <a id="anchor-top"></a>
+    <div id="showdown-exts">
+        <script src="/static/xss.js"></script>
+    </div>
+    <div class="mdui-container doc-container">
+        <!-- documents -->
+    </div>
+    <script>
+        $(function () {
+            try {
+                document.getElementById("editormd-preview").classList.add("mdui-typo");
+                document.getElementById("test-editormd-view").classList.add("mdui-color-transparent");//ohhhhhhhh
+                document.getElementById("test-editormd-view").classList.add("mdui-text-color-theme-text");
+            } catch (e) { }
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/holderjs@2.9.7/holder.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.1/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script>var $ = mdui.$;</script>
+    <!-- <script src="//cdn.w3cbus.com/mdui.org/docs/assets/docs/js/docs-v4.js"></script> -->
+    <!-- 引入数学公式美化插件MathJax -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            showProcessingMessages: false, //关闭js加载过程信息
+            messageStyle: "none", //不显示信息
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ], //行内公式选择符
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ], //段内公式选择符
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'], //避开某些标签
+                ignoreClass:"comment-content"|"head-class" //避开含该Class的标签，用|隔开
+            },
+            "HTML-CSS": {
+                availableFonts: ["STIX","TeX"], //可选字体
+                showMathMenu: false //关闭右击菜单显示
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        </script>
+    <!-- <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script> -->
+        <!--import mathjax-->
+        <script type="text/javascript"
+ src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+    <script src="/static/index.js"></script>
+    <!-- extra -->
+    <br><br><br>
+    <script>
+        var clicktimes = 0;
+        function clickedTasOJ() {
+            clicktimes++;
+            if (clicktimes == 10) {
+                clicktimes = 0;
+                mdui.alert("彩蛋", "恭喜你发现了一个毫无卵用的彩蛋")
+            }
+        }
+    </script>
+    <div class="footer-nav mdui-color-theme">
+        <div class="mdui-container mdui-typo" style="padding-top:1vh;padding-bottom:1vh;">
+            <h5 onclick="clickedTasOJ();" style="user-select: none;">TasOJ</h5>
+            <p id="hitokoto"><p href="#" id="hitokoto_text">:D 获取中...</p></p>
+            <p id="webrunTime">本网站已成功运行 ?</p>
+        </div>
+    </div>
+    <script>
+        fetch('https://v1.hitokoto.cn')
+          .then(response => response.json())
+          .then(data => {
+            const hitokoto = document.getElementById('hitokoto_text')
+            // hitokoto.href = 'https://hitokoto.cn/?uuid=' + data.uuid
+            hitokoto.innerText = data.hitokoto
+          })
+          .catch(console.error)
+      </script>
+    <script>
+        var timerEle = document.getElementById("webrunTime");
+        var startDate = new Date("Sat Jan 1 2022 00:00:00 GMT+0800");
+        setInterval(() => {
+            let now = new Date();
+            let difftime = (now - startDate) / 1000;// 转化成秒
+            var days = parseInt(difftime / 86400);
+            var hours = parseInt(difftime / 3600) - 24 * days;
+            var minutes = parseInt(difftime % 3600 / 60);
+            var seconds = parseInt(difftime % 60);
+            timerEle.innerText = `本网站已成功运行 ${days}天${hours}小时${minutes}分钟${seconds}秒`
+        }, 50)
+    </script>
+    <!-- <script>document.getElementById("avatar").src+='?t='+(+new Date());</script> -->
+</body>
+
+</html>

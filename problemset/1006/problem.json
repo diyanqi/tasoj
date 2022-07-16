@@ -1,0 +1,93 @@
+{
+    "display_id": "a105",
+    "title": "\u5224\u65ad\u70b9\u5728\u76f4\u7ebf\u4e0a",
+    "description": {
+        "format": "html",
+        "value": "<p>\u7ed9\u51fa\u70b9\uff08x1,y1)\uff0c\u5224\u65ad\u5176\u662f\u5426\u5728\u76f4\u7ebfy=kx+b\u4e0a\u3002</p><p>\u5982\u679c\u5728\u76f4\u7ebf\u4e0a\uff0c\u8f93\u51fa&quot;in the line.&quot;<br />\u5982\u679c\u5728\u76f4\u7ebf\u4e0a\u65b9\uff0c\u8f93\u51fa&quot;above the line.&quot;<br />\u5982\u679c\u5728\u76f4\u7ebf\u4e0b\u4e0b\uff0c\u8f93\u51fa&quot;below the line.&quot;</p>"
+    },
+    "tags": [
+        "\u9009\u62e9\u7ed3\u6784"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u884c\uff0c\u56db\u4e2a\u5b9e\u6570\uff0c\u4f9d\u6b21\u4e3ak,b,x1,y1</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e2a\u5b57\u7b26\u4e32\u3002</p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": "<p>\u4e24\u5b9e\u6570\u76f8\u5dee\u5c0f\u4e8e1e-12\u65f6\u76f8\u7b49\u3002</p>"
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "2.0 1.0 3 8.9",
+            "output": "above the line."
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "\u300aPython\u7f16\u7a0b\u57fa\u7840\u4e0e\u6848\u4f8b\u96c6\u9526\u300b,P58\u4f8b3-5",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "k,b,x,y = map(float,input().split())\nY=k*x+b\nif y==Y:\n  print('in the line.')\nelif y>Y:\n  print('above the line.')\nelse:\n  print('below the line.')"
+        }
+    ]
+}

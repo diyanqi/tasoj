@@ -1,0 +1,1 @@
+{"status": "Wrong Answer", "problem_id": 1000, "language": "cpp", "username": "diyanqi@qq.com", "code": "#include<bits/stdc++.h>\nusing namespace std;\n\nint main(){\n    ;\n    return 0;\n}", "msg": "", "testpoints": [{"testpoint": 1, "status": "Wrong Answer", "msg": "", "time": 4949756, "memory": 4919296}], "score": 0, "scorerate": "0%"}

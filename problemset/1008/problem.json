@@ -1,0 +1,93 @@
+{
+    "display_id": "a107",
+    "title": "\u5206\u6bb5\u51fd\u6570",
+    "description": {
+        "format": "html",
+        "value": "<p style=\"\">\u5df2\u77e5\u5206\u6bb5\u51fd\u6570</p><p style=\"\"><span style=\"color: rgb(36, 39, 41);\"><img alt=\"1.PNG\" src=\"/public/upload/ee08af91ee.png\" width=\"155\" height=\"70\" /><br /></span></p><p><span style=\"color: rgb(36, 39, 41);\">\u7ed9\u51fax\uff0c\u6c42y(\u4fdd\u75592\u4f4d\u5c0f\u6570\uff09\u3002</span></p>"
+    },
+    "tags": [
+        "\u9009\u62e9\u7ed3\u6784"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e2a\u5b9e\u6570x</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e2a\u5b9e\u6570y\uff08\u4fdd\u75592\u4f4d\u5c0f\u6570\uff09</p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "232.45",
+            "output": "54032.00"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "\u300aPython\u7f16\u7a0b\u57fa\u7840\u4e0e\u6848\u4f8b\u96c6\u9526\uff08\u4e2d\u5b66\u7248\uff09\u300b\uff0cP61\u4f8b3-8",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "def f(x):\n    return x**2-1 if x>=0 else 2*(x**2)-5\nprint('{:.2f}'.format(f(float(input()))))"
+        }
+    ]
+}

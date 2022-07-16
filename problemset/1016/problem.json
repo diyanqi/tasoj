@@ -1,0 +1,53 @@
+{
+    "title": "【模板】字符串哈希",
+    "description": {
+        "format": "markdown",
+        "value": "如题，给定 $N$ 个字符串（第 $i$ 个字符串长度为 $M_i$，字符串内包含数字、大小写字母，大小写敏感），请求出 $N$ 个字符串中共有多少个不同的字符串。\n\n 友情提醒：如果真的想好好练习哈希的话，请自觉，否则请右转PJ试炼场:)\n\n原题链接：https://www.luogu.com.cn/problem/P3370"
+    },
+    "tags": [
+        "哈希",
+        "HASH"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "第一行包含一个整数 $N$，为字符串的个数。\n\n接下来 $N$ 行每行包含一个字符串，为所提供的字符串。"
+    },
+    "output_description": {
+        "format": "markdown",
+        "value": "输出包含一行，包含一个整数，为不同的字符串个数。"
+    },
+    "test_case_score": [
+        {
+            "score": 50,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 50,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": "样例中第一个字符串(abc)和第三个字符串(abc)是一样的，所以所提供字符串的集合为{aaaa,abc,abcc,12345}，故共计4个不同的字符串。"
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "5\nabc\naaaa\nabc\nabcc\n12345",
+            "output": "4"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "print('Hello, world!')"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+copy str10.out output10.txt
+del str10.out
+copy str1.out output1.txt
+del str1.out
+copy str2.out output2.txt
+del str2.out
+copy str3.out output3.txt
+del str3.out
+copy str4.out output4.txt
+del str4.out
+copy str5.out output5.txt
+del str5.out
+copy str6.out output6.txt
+del str6.out
+copy str7.out output7.txt
+del str7.out
+copy str8.out output8.txt
+del str8.out
+copy str9.out output9.txt
+del str9.out

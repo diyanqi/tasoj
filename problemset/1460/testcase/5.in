@@ -1,0 +1,4 @@
+3
+HBox ox
+Widget idget(5,5)
+ox.pack(idget)

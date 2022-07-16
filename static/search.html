@@ -1,0 +1,218 @@
+<br>
+<div class="mdui-card">
+  <style>
+    .search-bar {
+      background-color: #4e4e4e !important;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 722px;
+      height: 46px;
+      margin-left: 30px;
+      background-color: #f1f3f4;
+      border-radius: 8px;
+      transition-duration: .18s;
+      transition-property: background-color, box-shadow;
+    }
+
+    .back {
+      display: none;
+      margin: 0 5px;
+    }
+
+    input {
+      flex: 1;
+      height: 46px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      -webkit-writing-mode: horizontal-tb !important;
+      text-rendering: auto;
+      color: -internal-light-dark(black, white);
+      letter-spacing: normal;
+      word-spacing: normal;
+      line-height: normal;
+      text-transform: none;
+      text-indent: 0px;
+      text-shadow: none;
+      display: inline-block;
+      text-align: start;
+      appearance: auto;
+      -webkit-rtl-ordering: logical;
+      cursor: text;
+      background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+      margin: 0em;
+      padding: 1px 2px;
+      border-width: 2px;
+      border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+      border-image: initial;
+      color: #fff;
+      overflow: visible;
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+      padding: 1px 2px;
+    }
+  </style>
+  <!-- 卡片的内容 -->
+  <div class="mdui-card-content">
+    <form method="get" class="search-bar" action="/search">
+        <button type="submit" class="submit mdui-btn mdui-btn-icon">
+          <i class="mdui-icon material-icons mdui-text-color-theme-icon">search</i>
+        </button>
+        <input type="text" name="q" id="inp" placeholder="搜索本站资源" value="" />
+    </form>
+
+
+    <div class="mdui-tab mdui-tab-scrollable" mdui-tab>
+      <a href="#problem" class="mdui-ripple">题目</a>
+      <a href="#judgement" class="mdui-ripple">状态</a>
+      <a href="#benben" class="mdui-ripple" disabled>犇犇</a>
+      <a href="#ask" class="mdui-ripple">问答</a>
+      <a href="#article" class="mdui-ripple">文章</a>
+      <a href="#user" class="mdui-ripple" disabled>用户</a>
+    </div>
+    <div id="problem" class="mdui-p-a-2">
+      <div class="mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+          <thead>
+            <tr>
+              <th>状态</th>
+              <th>#</th>
+              <th>标题</th>
+              <th>标签</th>
+              <th>通过率</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- <td></td><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td></tr> -->
+              <!-- problemlist -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="judgement" class="mdui-p-a-2">
+      <h5>仅显示30天内测评记录</h5>
+      <div class="mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+          <thead>
+            <tr>
+              <th>状态</th>
+              <th>#</th>
+              <th>题目</th>
+              <th>语言</th>
+              <th>作者</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- <td></td><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td></tr> -->
+              <!-- judgelist -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="benben" class="mdui-p-a-2">
+      <h5>仅显示30天内的犇犇</h5>
+      <div class="mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>时间</th>
+              <th>摘要</th>
+              <th>发布者</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- <td></td><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td></tr> -->
+              <!-- benbenlist -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="ask" class="mdui-p-a-2">
+      <h5>仅显示30天内的问答</h5>
+      <div class="mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>时间</th>
+              <th>标题</th>
+              <th>发布者</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- <td></td><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td></tr> -->
+              <!-- asklist -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="article" class="mdui-p-a-2">
+      <h5>仅显示30天内的文章</h5>
+      <div class="mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>时间</th>
+              <th>标题</th>
+              <th>发布者</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- <td></td><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td></tr> -->
+              <!-- artlist -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="user" class="mdui-p-a-2">
+      <div class="mdui-table-fluid">
+        <table class="mdui-table mdui-table-hoverable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>用户序号</th>
+              <th>用户名</th>
+              <th>一句话介绍</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- <td></td><td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td></tr> -->
+              <!-- ulist -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 卡片的按钮 -->
+  <div class="mdui-card-actions"></div>
+
+</div>
+<script>
+  function getQueryVariable(variable)
+  {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+  }
+  if(getQueryVariable("q")!=false)
+    document.getElementById("inp").value=decodeURIComponent(getQueryVariable("q"));
+  function clear() {
+    document.getElementById("inp").value = "";
+  }
+</script>

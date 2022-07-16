@@ -1,0 +1,1 @@
+{"status": "Accepted", "problem_id": 1000, "language": "nodejs", "username": "toby_lai@126.com", "code": "console.log(\"Hello, world!\")", "msg": "", "testpoints": [{"testpoint": 1, "status": "Accepted", "msg": "", "time": 133694968, "memory": 31203328}], "score": 100, "scorerate": "100%"}

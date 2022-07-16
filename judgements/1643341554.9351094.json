@@ -1,0 +1,1 @@
+{"status": "Wrong Answer", "problem_id": 1000, "language": "python", "username": "diyanqi@qq.com", "code": "while(1):\n    pass", "msg": "", "testpoints": [{"testpoint": 1, "status": "Time Limit Exceeded", "msg": "", "time": 1102853042, "memory": 8937472}], "score": 0, "scorerate": "0%"}

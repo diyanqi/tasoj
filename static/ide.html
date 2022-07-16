@@ -1,0 +1,173 @@
+<br>
+<div class="">
+    语言：
+    <select class="mdui-select" mdui-select="{position: 'bottom'}" id="language" style="margin-right: 1vh;">
+        <option value="cpp">C/C++</option>
+        <option value="python">Python3</option>
+        <option value="nodejs">Node.js-v16.13.2</option>
+        <option value="kotlin-jvm" disabled>Kotlin/JVM[暂不支持]</option>
+        <option value="tobylang">py-TobyLang-1.3.9b</option>
+        <option value="tobylang-cpp">cpp-TobyLang-1.3.9b</option>
+        <option value="wenyan">文言</option>
+        <option value="pascal" disabled>Pascal</option>
+        <option value="openjdk-11">OpenJDK-11.0.13</option>
+    </select>
+    <button id="su" class="mdui-btn mdui-btn-raised mdui-btn-dense mdui-ripple mdui-color-theme-accent mdui-float-right"
+        onclick="submit();">运行</button>
+    <br>
+    <small>* 提示：使用Java请把class设置为[ Oj ]，否则编译不通过QWQ</small>
+</div>
+<div style="height:350px;" id="editorDiv" class="mdui-container-fluid"></div>
+
+
+<br>
+
+<div class="mdui-row">
+    <div class="mdui-col-xs-6">
+        <h4>标准输入</h4>
+        <div style="height:200px;" id="editorDivInput" class="mdui-container-fluid"></div>
+    </div>
+    <div class="mdui-col-xs-6">
+        <h4>标准输出&nbsp;&nbsp;&nbsp;<small id="otherstatus" class="mdui-float-right">未运行</small></h4>
+        <div style="height:200px;" id="editorDivOutput" class="mdui-container-fluid"></div>
+    </div>
+</div>
+
+
+
+<script src="/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/ace/src-noconflict/ext-language_tools.js" type="text/javascript"></script>
+
+
+<script>
+    var ieditor = ace.edit("editorDivInput");
+    //设置编辑器样式，对应theme-*.js文件
+    ieditor.setTheme("ace/theme/twilight");
+    //设置代码语言，对应mode-*.js文件
+    ieditor.session.setMode("ace/mode/c_cpp");
+    //设置打印线是否显示
+    ieditor.setShowPrintMargin(false);
+    //设置是否只读
+    ieditor.setReadOnly(false);
+    document.getElementById('editorDivInput').style.fontSize = '15px';
+    //以下部分是设置输入代码提示的，如果不需要可以不用引用ext-language_tools.js
+    // ace.require("ace/ext/language_tools");
+    // editor.setOptions({
+    //     enableBasicAutocompletion: true,
+    //     enableSnippets: true,
+    //     enableLiveAutocompletion: true
+    // });
+</script>
+<script>
+    var oeditor = ace.edit("editorDivOutput");
+    //设置编辑器样式，对应theme-*.js文件
+    oeditor.setTheme("ace/theme/twilight");
+    //设置代码语言，对应mode-*.js文件
+    oeditor.session.setMode("ace/mode/c_cpp");
+    //设置打印线是否显示
+    oeditor.setShowPrintMargin(false);
+    //设置是否只读
+    oeditor.setReadOnly(true);
+    document.getElementById('editorDivOutput').style.fontSize = '15px';
+    //以下部分是设置输入代码提示的，如果不需要可以不用引用ext-language_tools.js
+    // ace.require("ace/ext/language_tools");
+    // editor.setOptions({
+    //     enableBasicAutocompletion: true,
+    //     enableSnippets: true,
+    //     enableLiveAutocompletion: true
+    // });
+</script>
+<script>
+    var editor = ace.edit("editorDiv");
+    //设置编辑器样式，对应theme-*.js文件
+    editor.setTheme("ace/theme/twilight");
+    //设置代码语言，对应mode-*.js文件
+    editor.session.setMode("ace/mode/c_cpp");
+    //设置打印线是否显示
+    editor.setShowPrintMargin(false);
+    //设置是否只读
+    editor.setReadOnly(false);
+    document.getElementById('editorDiv').style.fontSize = '20px';
+    //以下部分是设置输入代码提示的，如果不需要可以不用引用ext-language_tools.js
+    ace.require("ace/ext/language_tools");
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+</script>
+<script >
+    function submit() {
+        document.getElementById("su").setAttribute("disabled", "disabled");
+        document.getElementById("su").innerHTML = "运行中……";
+        document.getElementById("otherstatus").innerHTML=`<div class="mdui-progress">
+        <div class="mdui-progress-indeterminate"></div>
+        </div>`;
+        code = editor.getValue();
+        lang = document.getElementById("language").value;
+        console.log(lang);
+        obj = { 'code': code, 'language': lang, 'stdinput': ieditor.getValue() };
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+        httpRequest.open('POST', '/ide_submit', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+        /**
+         * 获取数据后的处理程序
+         */
+        httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                var json = httpRequest.responseText;//获取到服务端返回的数据
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'Submit Accepted') {
+                    mdui.snackbar("提交成功");
+                    var flag = false;
+                    get_result(kk['task_id']);
+                } else {
+                    mdui.snackbar("请先登录！！！");
+                    document.getElementById("su").removeAttribute("disabled", "disabled");
+                    document.getElementById("su").innerHTML = "运行";
+                }
+            }
+        };
+    }
+</script>
+<script>
+    function get_result(rid) {
+        setTimeout(function () {
+            var httpRequestkk = new XMLHttpRequest();//第一步：建立所需的对象
+            httpRequestkk.open('GET', '/get_ide_result/'+String(rid), true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+            httpRequestkk.send();//第三步：发送请求  将请求参数写在URL中
+            /**
+             * 获取数据后的处理程序
+             */
+            httpRequestkk.onreadystatechange = function () {
+                if (httpRequestkk.readyState == 4 && httpRequestkk.status == 200) {
+                    var json = httpRequestkk.responseText;//获取到json字符串，还需解析
+                    console.log(kk = JSON.parse(json));
+                    if (kk['status'] != "running") {
+                        ret=kk;
+                        document.getElementById("su").removeAttribute("disabled", "disabled");
+                        document.getElementById("su").innerHTML = "运行";
+                        if(kk['status']!='Accepted'){
+                            console.log(kk['status']);
+                            oeditor.setValue(ret['files']['stderr']);
+                            document.getElementById("otherstatus").innerHTML=`运行状态 ${ret['status']} ${(ret['time']/1000/1000).toFixed(2)}ms ${(ret['memory']/1024/1024).toFixed(2)}MB`;
+                            return kk;
+                        }
+                        oeditor.setValue(ret['files']['stdout']);
+                        document.getElementById("otherstatus").innerHTML=`运行状态 ${ret['status']} ${(ret['time']/1000/1000).toFixed(2)}ms ${(ret['memory']/1024/1024).toFixed(2)}MB`;
+                        return kk;
+                    }else{
+                        return get_result(rid);
+                    }
+                }
+            };
+        }, 767);
+    }
+</script>
+
+<script>
+    editor.setValue(window.localStorage.getItem("precode"));
+    document.getElementById('editorDiv').style.fontSize = String(window.localStorage.getItem("editorsize"))+'px';
+    editor.setTheme("ace/theme/"+window.localStorage.getItem("codetheme"));
+</script>

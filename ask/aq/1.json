@@ -1,0 +1,35 @@
+{
+    "email": "diyanqi@foxmail.com",
+    "title": "\u6551\u547d\uff01\u7ad9\u5916\u9898\u6c42\u52a9\uff01",
+    "question": "\u539f\u9898\uff1a\n![](/image/20220121165302.png)\n\n\u6211\u7684\u4ee3\u7801\uff1a\n```cpp\n#include <bits/stdc++.h>\nusing namespace std;\nint n;\nstring s;\nbool check(string str){\n    for(int i=0;i<str.length();i++){\n        if(str[i]>='0'&&str[i]<='9'){\n            int start=i;\n            int flag=-100;\n            while(str[i]>='0'&&str[i]<='9'){\n                i++;\n                if(str[i]<'0'||str[i]>'9'){\n                    break;\n                }\n                if((int)str[i]==(int)str[i-1]+1){\n                    if(flag==-100)\n                        flag=+1;\n                    else{\n                        if(flag==-1){\n                            flag=0;break;\n                        }\n                    }\n                }else if((int)str[i]==(int)str[i-1]-1){\n                    if(flag==-100)\n                        flag=-1;\n                    else{\n                        if(flag==+1){\n                            flag=0;break;\n                        }\n                    }\n                }else{\n                    flag=0;\n                    break;\n                }\n            }\n            // cout<<\">>\"<<(int)str[i]<<endl;\n            if((flag==-1||flag==+1)&&i-start>=3){\n                return true;\n            }\n        }\n    }\n    return false;\n}\nint main(){\n    cin>>n;\n    while(n--){\n        cin>>s;\n        if(check(s)){\n            cout<<\"yes\\n\";\n        }else{\n            cout<<\"no\\n\";\n        }\n    }\n    return 0;\n}\n```\n\u7ed3\u679c\u603b\u5171\u4e09\u4e2a\u70b9\uff0cWA\u4e86\u7b2c\u4e00\u4e2a\u3002\n\n\u6015\u4e0d\u662f\u6709\u4ec0\u4e48\u9677\u9631\u3002\u6551\u547d\uff01QWQ",
+    "time": 1642755393.4641902,
+    "the_same": 3,
+    "samers": [
+        "diyanqi@foxmail.com",
+        "diyanqi@qq.com",
+        "toby_lai@126.com"
+    ],
+    "answers": [
+        {
+            "email": "diyanqi@qq.com",
+            "answer": "let me answer test",
+            "time": 1642822505.9551568,
+            "liked": 0,
+            "likers": [],
+            "aid": 1
+        },
+        {
+            "email": "diyanqi@qq.com",
+            "answer": "\n\n\u91cd\u5199\u4e86\u4e00\u904d\u4ee3\u7801\uff0c\u89e3\u51b3\u4e86\u8fd9\u4e2a\u95ee\u9898\uff1a\n```cpp\n#include <bits/stdc++.h>\n    using namespace std;\n    int n;\n    string s;\n    bool solve(int start,int end){\n        // cout<<\":\"<<start<<\" \"<<end<<endl;\n        if(end-start+1<3){\n            // cout<<\"wssb2\\n\";\n            return false;\n        }\n        if(int(s[start])+1==int(s[start+1])){\n            for(int i=start+1;i<=end-1;i++){\n                if(int(s[i])+1!=int(s[i+1])){\n                    // cout<<\"wssb:\"<<s[i]<<s[i+1]<<endl;\n                    return false;\n                }\n            }\n            return true;\n        }else if(int(s[start])-1==int(s[start+1])){\n            for(int i=start+1;i<=end-1;i++){\n                if(int(s[i])-1!=int(s[i+1])){\n                    // cout<<\"wss3b\\n\";\n                    return false;\n                }\n            }\n            return true;\n        }else{\n            return false;\n        }\n    }\n    bool check(string str){\n        for(int i=0;i<str.length();i++){\n            if(str[i]>='0'&&str[i]<='9'){\n                int last=i;\n                for(;(str[i]>='0'&&str[i]<='9');i++){\n                    ;\n                }\n                // cout<<\"kk:\"<<last<<\" \"<<i-1<<endl;\n                if(solve(last,i-1)){\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n    int main(){\n        cin>>n;\n        while(n--){\n            cin>>s;\n            if(check(s)){\n                cout<<\"yes\\n\";\n            }else{\n                cout<<\"no\\n\";\n            }\n        }\n        return 0;\n    }\n    /*\n    \u91cd\u5199\u4e86\u4e00\u8fb9\u4fdd\u4f51\u8981\u8fc7\n    \n                       _ooOoo_\n                      o8888888o\n                      88\" . \"88\n                      (| -_- |)\n                      O\\  =  /O\n                   ____/`---'\\____\n                 .'  \\\\|     |//  `.\n                /  \\\\|||  :  |||//  \\\n               /  _||||| -:- |||||-  \\\n               |   | \\\\\\  -  /// |   |\n               | \\_|  ''\\---/''  |   |\n               \\  .-\\__  `-`  ___/-. /\n             ___`. .'  /--.--\\  `. . __\n          .\"\" '<  `.___\\_<|>_/___.'  >'\"\".\n         | | :  `- \\`.;`\\ _ /`;.`/ - ` : | |\n         \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /\n    ======`-.____`-.___\\_____/___.-`____.-'======\n                       `=---='\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                \u4f5b\u7956\u4fdd\u4f51       \u6c38\u65e0BUG\n    */\n```",
+            "time": 1642928865.9499047,
+            "liked": 3,
+            "likers": [
+                "diyanqi@qq.com",
+                "diyanqi@foxmail.com",
+                "toby_lai@126.com"
+            ],
+            "aid": 2
+        }
+    ],
+    "pid": "0"
+}

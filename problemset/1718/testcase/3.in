@@ -1,0 +1,13 @@
+12 3
+a := 101
+b := a XOR ?
+c := b XOR b
+d := b XOR a
+e := c XOR ?
+f := e XOR ?
+g := c XOR f
+h := 100
+i := c XOR h
+j := c XOR i
+k := b XOR ?
+l := 111

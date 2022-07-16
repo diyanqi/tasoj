@@ -1,0 +1,93 @@
+{
+    "display_id": "a108",
+    "title": "计算表达式的值",
+    "description": {
+        "format": "html",
+        "value": "<p>计算形式如a+aa+aaa+...+aa...aa(共n项）的值。其中a为[0,9]之间的整数。<br /></p>"
+    },
+    "tags": [
+        "循环结构"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>一行，两整数a与n</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p>一个整数</p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "3 5",
+            "output": "37035"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "《Python编程基础与案例集锦（中学版）》P70例4-8",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "def f(a1,n1):\n    r,t=0,0\n    for i in range(n1):\n        t = t*10+a1\n        r = r + t\n    return r\na,n = map(int,input().split())\nprint(f(a,n))"
+        }
+    ]
+}

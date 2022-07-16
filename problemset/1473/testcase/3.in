@@ -1,0 +1,21 @@
+20
+add 17
+add 18
+add 19
+sum
+del 17
+add 20
+add 21
+sum
+del 18
+add 22
+add 23
+sum
+add 24
+add 25
+del 19
+sum
+del 20
+add 26
+add 27
+sum

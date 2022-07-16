@@ -1,0 +1,1 @@
+{"status": "Compile Error", "problem_id": 1000, "language": "cpp", "username": "toby_lai@126.com", "code": "console.log(\"Hello, world!\")", "msg": "scriptfile:1:1: error: 'console' does not name a type\n    1 | console.log(\"Hello, world!\")\n      | ^~~~~~~\n"}

@@ -1,0 +1,1 @@
+{"status": "Wrong Answer", "problem_id": 1000, "language": "nodejs", "username": "toby_lai@126.com", "code": "console.log(\"Hello, world!\")", "msg": "", "testpoints": [{"testpoint": 1, "status": "Time Limit Exceeded", "msg": "", "time": 879309606, "memory": 24514560}], "score": 0, "scorerate": "0%"}

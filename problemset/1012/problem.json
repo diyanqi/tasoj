@@ -1,0 +1,94 @@
+{
+    "display_id": "a113",
+    "title": "\u4e2d\u4f4d\u6570",
+    "description": {
+        "format": "html",
+        "value": "<p>\u7ed9\u51fa\u4e00\u4e32\u6574\u6570\uff0c\u6c42\u51fa\u5176\u4e2d\u4f4d\u6570\u3002\uff08\u5148\u628a\u6570\u4ece\u5c0f\u5230\u5927\u6392\u5e8f\uff0c\u82e5\u4e3a\u5947\u6570\u4e2a\uff0c\u4e2d\u4f4d\u6570\u662f\u6700\u4e2d\u95f4\u7684\u6570\uff1b\u82e5\u4e3a\u5076\u6570\u4e2a\uff0c\u4e2d\u4f4d\u6570\u662f\u6700\u4e2d\u95f42\u6570\u7684\u5e73\u5747\u503c\uff09</p>"
+    },
+    "tags": [
+        "\u5e8f\u5217\u7ed3\u6784",
+        "\u5217\u8868"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u884c\uff0c\u82e5\u5e72\u4e2a\u6574\u6570</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e2a\u5b9e\u6570\uff08\u5e26\u4e00\u4f4d\u5c0f\u6570\uff09</p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "1 7 2 30 1234 8 60",
+            "output": "8.0"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "\u300aPython\u7f16\u7a0b\u57fa\u7840\u4e0e\u6848\u4f8b\u96c6\u9526\uff08\u4e2d\u5b66\u7248\uff09\u300bP85\u4f8b5-1",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "lst = list(map(int,input().split()))\nlst.sort()\nln = len(lst)\ns = (ln-1)//2\ne = ln//2\nr = sum(lst[s:e+1])/(e+1-s)\nprint('{:.1f}'.format(r))"
+        }
+    ]
+}

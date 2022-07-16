@@ -1,0 +1,23 @@
+<script>
+    document.title="TasOJ - 权限错误";
+    setTimeout(function () {
+        mdui.dialog({
+            title: 'Whoa?!?',
+            content: '您无权查看此页面<br>即将返回上一页面',
+            buttons: [
+                {
+                    text: '取消',
+                    onClick: function (inst) {
+                        window.history.back();
+                    }
+                },
+                {
+                    text: '确认',
+                    onClick: function (inst) {
+                        window.history.back();
+                    }
+                }
+            ]
+        });
+    }, 100);
+</script>

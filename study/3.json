@@ -1,0 +1,12 @@
+{
+    "title":"循环结构",
+    "subtitle":"循环是计算机的一大强项，因为计算机愿意也有能力重复操作枯燥的工作。",
+    "image":"/image/20220305170639.jpeg",
+    "introduction":"计算机固然善于循环，但是太庞大的数据也会是计算机陷入困境。在一切循环的程序中，你需要着眼于如何简化循环，使循环能少执行几次。我们称之为优化。",
+    "content":[
+        {"type":"problem","title":"特训1","link":"/problem/1011"},
+        {"type":"problem","title":"特训2","link":"/problem/1009"},
+        {"type":"problem","title":"特训3","link":"/problem/1010"},
+        {"type":"problem","title":"真题挑战","link":"/problem/1088"}
+    ]
+}

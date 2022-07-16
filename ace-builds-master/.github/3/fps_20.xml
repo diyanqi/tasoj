@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/"><generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+<item>
+<title ><![CDATA[P1070]]></title>
+<description ><![CDATA[一类书的序言是以罗马数字标页码的。传统罗马数字用单个字母表示特定的数值，以下是标准数字表:&nbsp 
+
+I&nbsp 1&nbsp &nbsp L&nbsp 50&nbsp &nbsp M&nbsp 1000
+V&nbsp 5&nbsp &nbsp C&nbsp 100
+X&nbsp 10&nbsp D&nbsp 500
+最多3个同样的可以表示为10n的数字(I,X,C,M)可以连续放在一起，表示它们的和:&nbsp 
+
+III=3
+CCC=300
+可表示为5x10n的字符(V,L,D)从不连续出现。&nbsp 
+
+除了下一个规则，一般来说，字符以递减的顺序接连出现:&nbsp 
+
+CCLXVIII&nbsp =&nbsp 100+100+50+10+5+1+1+1&nbsp =&nbsp 268
+有时，一个可表示为10n的数出现在一个比它大1级或2级的数前(I在V或X前面，X在L或C前面，等等)。在这种情况下，数值等于后面的那个数减去前面的那个数:&nbsp 
+
+IV&nbsp =&nbsp 4
+IX&nbsp =&nbsp 9
+XL&nbsp =&nbsp 40
+This&nbsp compound&nbsp mark&nbsp forms&nbsp a&nbsp unit&nbsp and&nbsp may&nbsp not&nbsp be&nbsp combined&nbsp to&nbsp make&nbsp another&nbsp compound&nbsp mark&nbsp (e.g.,&nbsp IXL&nbsp is&nbsp wrong&nbsp for&nbsp 39;&nbsp XXXIX&nbsp is&nbsp correct).&nbsp 
+
+像XD,&nbsp IC,&nbsp 和XM这样的表达是非法的，因为前面的数比后面的数小太多。对于XD(490的错误表达)，可以写成&nbsp CDXC;&nbsp 对于IC(99的错误表达)，可以写成XCIX;&nbsp 对于XM(990的错误表达)，可以写成CMXC。&nbsp 90&nbsp is&nbsp expressed&nbsp XC&nbsp and&nbsp not&nbsp LXL,&nbsp since&nbsp L&nbsp followed&nbsp by&nbsp X&nbsp connotes&nbsp that&nbsp successive&nbsp marks&nbsp are&nbsp X&nbsp or&nbsp smaller&nbsp (probably,&nbsp anyway).&nbsp 
+
+
+给定N(1&nbsp &lt; =&nbsp N&nbsp &lt; &nbsp 3,500)，&nbsp 序言的页码数，请统计在第1页到第N页中，有几个I出现，几个V出现，等等&nbsp (从小到大的顺序)。不要输出并没有出现过的字符。&nbsp 
+
+比如N&nbsp =&nbsp 5,&nbsp 那么页码数为:&nbsp I,&nbsp II,&nbsp III,&nbsp IV,&nbsp V.&nbsp 总共有7个I出现，2个V出现。&nbsp 
+
+]]></description>
+<input ><![CDATA[一个整数N。&nbsp 
+]]></input>
+<output ><![CDATA[每行一个字符和一个数字k，表示这个字符出现了k次。字符必须按数字表中的递增顺序输出。&nbsp 
+
+]]></output>
+<sample_input ><![CDATA[5
+]]></sample_input>
+<sample_output ><![CDATA[I 7
+V 2
+]]></sample_output>
+<time_limit ><![CDATA[1s
+]]></time_limit>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
+<hint ><![CDATA[]]></hint>
+<source ><![CDATA[USACO&nbsp 2.2.1
+]]></source>
+<test_input ><![CDATA[1
+]]></test_input>
+<test_input ><![CDATA[20
+]]></test_input>
+<test_input ><![CDATA[100
+]]></test_input>
+<test_input ><![CDATA[500
+]]></test_input>
+<test_input ><![CDATA[1000
+]]></test_input>
+<test_input ><![CDATA[2974
+]]></test_input>
+<test_input ><![CDATA[3213
+]]></test_input>
+<test_input ><![CDATA[3499
+]]></test_input>
+<test_output ><![CDATA[I 1
+]]></test_output>
+<test_output ><![CDATA[I 28
+V 10
+X 14
+]]></test_output>
+<test_output ><![CDATA[I 140
+V 50
+X 150
+L 50
+C 11
+]]></test_output>
+<test_output ><![CDATA[I 700
+V 250
+X 750
+L 250
+C 750
+D 101
+]]></test_output>
+<test_output ><![CDATA[I 1400
+V 500
+X 1500
+L 500
+C 1500
+D 500
+M 101
+]]></test_output>
+<test_output ><![CDATA[I 4165
+V 1486
+X 4447
+L 1485
+C 4465
+D 1500
+M 3225
+]]></test_output>
+<test_output ><![CDATA[I 4500
+V 1605
+X 4805
+L 1600
+C 4648
+D 1500
+M 3942
+]]></test_output>
+<test_output ><![CDATA[I 4900
+V 1750
+X 5250
+L 1750
+C 5250
+D 1600
+M 4800
+]]></test_output>
+</item>
+</fps>

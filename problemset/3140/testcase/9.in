@@ -1,0 +1,2 @@
+32657
+int f(int n){if (n < 7) return 1; return f(n-1)+f(n-2)+f(n-3)+f(n-4)+f(n-5)-f(n-6)-f(n-7);}

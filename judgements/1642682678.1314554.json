@@ -1,0 +1,1 @@
+{"status": "Compile Error", "problem_id": 1000, "language": "cpp", "username": "diyanqi@foxmail.com", "code": "kksk", "msg": "a.cc:1:1: error: 'kksk' does not name a type\n    1 | kksk\n      | ^~~~\n"}

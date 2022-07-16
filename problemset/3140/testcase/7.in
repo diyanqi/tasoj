@@ -1,0 +1,2 @@
+0
+int f(int n){if (n < 1) return 1;if (n < 2) return 0;return f(f(f(f(f(f(f(f(f(f(n-1))))))))));}

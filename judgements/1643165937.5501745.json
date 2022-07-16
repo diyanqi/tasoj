@@ -1,0 +1,1 @@
+{"status": "Compile Error", "problem_id": 1000, "language": "kotlin-jvm", "username": "toby_lai@126.com", "code": "fun main(){\n    println(\"Hello, world!\")\n}", "msg": "/usr/bin/cp: invalid option -- 'c'\nTry '/usr/bin/cp --help' for more information.\n"}

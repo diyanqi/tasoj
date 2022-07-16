@@ -1,0 +1,172 @@
+<br>
+<script src="/static/highlightjs/highlight.min.js"></script>
+<link href="/static/highlightjs/styles/vs2015.min.css" rel="stylesheet">
+<script src="/static/highlightjs/languages/cpp.min.js"></script>
+<script src="/static/highlightjs/languages/c.min.js"></script>
+<script src="/static/highlightjs/languages/python.min.js"></script>
+<script src="/static/highlightjs/languages/markdown.min.js"></script>
+<!-- <div id="temp-info-md-copy" class="mdui-invisible"></div> -->
+<script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js"></script>
+<script src="/static/markdowntool.js"></script>
+<div class="mdui-row">
+    <div class="mdui-card mdui-hoverable mdui-col-sm-8 mdui-col-xs-12">
+        <div class="mdui-card-primary">
+            <div>
+                <div class="mdui-row-xs-1 mdui-row-sm-2">
+                    <div class="mdui-col">
+                        <div class="mdui-card-primary-title" style="float:left;">文章列表</div>&nbsp;&nbsp;&nbsp;
+                        <button class="mdui-btn mdui-color-theme-accent mdui-ripple"
+                            onclick="new_question();">发布文章</button>
+                    </div>
+                    <div class="mdui-col">
+                        <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                            <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i
+                                    class="mdui-icon material-icons">search</i></button>
+                            <input id="q" onkeydown="return disableTextSubmit(event)" class="mdui-textfield-input" type="text" placeholder="搜索" style="cursor:text;">
+                            <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i
+                                    class="mdui-icon material-icons">close</i></button>
+                        </div>
+                        <script>
+                            function disableTextSubmit(e) {
+                                if (e.keyCode == 13) {
+                                    location.href="/search?q="+document.getElementById("q").value+"#article";
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-table-fluid mdui-shadow-0">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>发布时间</th>
+                        <th>评论数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr onclick="window.location='/problem/1000'" style="cursor:pointer;">
+                    <td></td>
+                    <td>1000</td>
+                    <td>A+B问题</td>
+                    <td><div class="mdui-chip">
+                        <span class="mdui-chip-title">入门</span>
+                      </div></td>
+                    <td>100%</td>
+                </tr> -->
+                    <!-- lists -->
+                </tbody>
+            </table>
+        </div>
+        <div style="float:right;"><button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="back();">
+                <i class="mdui-icon material-icons">arrow_back</i>
+            </button><button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="forward();">
+                <i class="mdui-icon material-icons">arrow_forward</i>
+            </button></div>
+    </div>
+    <div class="mdui-card mdui-hoverable mdui-col-sm-3 mdui-col-xs-12 mdui-col-offset-sm-1">
+        <div class="mdui-card-primary">
+            <div class="mdui-card-primary-subtitle">标签分类</div>
+        </div>
+        <div class="mdui-card-content">
+            <!-- benben -->
+        </div>
+    </div>
+    <br><br><br>
+    <script>
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
+            }
+            return (false);
+        }
+        function back() {
+            if (getQueryVariable("page") == false) {
+                mdui.snackbar("已经是第一页了");
+                return;
+            }
+            if (getQueryVariable("page") != "1")
+                location.href = "/article/list?page=" + String(Number(getQueryVariable("page")) - 1);
+            else
+                mdui.snackbar("已经是第一页了");
+        }
+        function forward() {
+            if (getQueryVariable("page") == false)
+                location.href = "/article/list?page=2";
+            else
+                location.href = "/article/list?page=" + String(Number(getQueryVariable("page")) + 1);
+        }
+    </script>
+    <script>function new_question() {
+            mdui.dialog({
+                title: '发布文章',
+                content: `
+<div class="mdui-textfield">
+  <input class="mdui-textfield-input" type="text" id="title" placeholder="标题"/>
+</div>
+      <div style="height:355px;">
+      <div id="test-editor">
+                            <textarea id="inp-content" style="display:none;"></textarea>
+                        </div></div>
+                        <div>
+                        <div style="float:left;"><div class="mdui-textfield mdui-textfield-floating-label">
+  <label class="mdui-textfield-label">相关题目序号(没有请填0)</label>
+  <input class="mdui-textfield-input" type="number" id="pid"/>
+</div></div>
+                        <div style="float:right;"><br><br><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="send_reply();">发布</button></div></div>`,
+                buttons: []
+            });
+            var secScript = document.createElement("script");
+            secScript.setAttribute("type", "text/javascript");
+            secScript.innerHTML = `$(function () {
+        document.getElementById("pid").value=0;
+            var editor = editormd("test-editor", {
+                height: '350px',
+                syncScrolling: "single",
+                emoji: true,
+                //启动本地图片上传功能
+                imageUpload: true,
+                watch: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+                path: "/static/editor.md/lib/",
+                imageUploadURL: "/upload", //文件提交请求路径
+                saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+                previewTheme: "dark",//预览主题样式 黑色
+            });
+        })`;
+            document.body.insertBefore(secScript, document.body.lastChild);
+        }
+        function send_reply() {
+            obj = { 'msg': document.getElementById("inp-content").innerText, 'problem_id': document.getElementById("pid").value, 'title': document.getElementById("title").value };
+            var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+            httpRequest.open('POST', '/new_pas', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+            httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+            httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+            httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+                if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                    var json = httpRequest.responseText;//获取到服务端返回的数据
+                    console.log(kk = JSON.parse(json));
+                    if (kk['status'] == 'failed') {
+                        mdui.snackbar("发送失败……");
+                    } else {
+                        location.reload()
+                        mdui.snackbar({
+                            message: '发送成功',
+                            buttonText: '啊对对对',
+                            onClose: function () {
+                                location.reload()
+                            }
+                        });
+                    }
+                }
+            };
+        }
+    </script>
+</div>

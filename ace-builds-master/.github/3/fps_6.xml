@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fps version="1.2" url="https://github.com/zhblue/freeproblemset/"><generator name="HUSTOJ" url="https://github.com/zhblue/hustoj/"/>
+<item>
+<title ><![CDATA[P1056]]></title>
+<description ><![CDATA[&nbsp &nbsp &nbsp &nbsp 在Mars星球上，每个Mars人都随身佩带着一串能量项链。在项链上有N颗能量珠。能量珠是一颗有头标记与尾标记的珠子，这些标记对应着某个正整数。并且，对于相邻的两颗珠子，前一颗珠子的尾标记一定等于后一颗珠子的头标记。因为只有这样，通过吸盘（吸盘是Mars人吸收能量的一种器官）的作用，这两颗珠子才能聚合成一颗珠子，同时释放出可以被吸盘吸收的能量。如果前一颗能量珠的头标记为m，尾标记为r，后一颗能量珠的头标记为r，尾标记为n，则聚合后释放的能量为（Mars单位），新产生的珠子的头标记为m，尾标记为n。
+需要时，Mars人就用吸盘夹住相邻的两颗珠子，通过聚合得到能量，直到项链上只剩下一颗珠子为止。显然，不同的聚合顺序得到的总能量是不同的，请你设计一个聚合顺序，使一串项链释放出的总能量最大。
+例如：设N=4，4颗珠子的头标记与尾标记依次为(2，3)&nbsp (3，5)&nbsp (5，10)&nbsp (10，2)。我们用记号♁表示两颗珠子的聚合操作，(j♁k)表示第j，k两颗珠子聚合后所释放的能量。则第4、1两颗珠子聚合后释放的能量为：
+(4♁1)=10*2*3=60。
+这一串项链可以得到最优值的一个聚合顺序所释放的总能量为
+((4♁1)♁2)♁3）=10*2*3+10*3*5+10*5*10=710。
+]]></description>
+<input ><![CDATA[输入文件energy.in的第一行是一个正整数N（4≤N≤100），表示项链上珠子的个数。第二行是N个用空格隔开的正整数，所有的数均不超过1000。第i个数为第i颗珠子的头标记（1≤i≤N），当i&lt; N&lt; &nbsp span&gt; 时，第i颗珠子的尾标记应该等于第i+1颗珠子的头标记。第N颗珠子的尾标记应该等于第1颗珠子的头标记。
+至于珠子的顺序，你可以这样确定：将项链放到桌面上，不要出现交叉，随意指定第一颗珠子，然后按顺时针方向确定其他珠子的顺序。
+]]></input>
+<output ><![CDATA[输出文件energy.out只有一行，是一个正整数E（E≤2.1*109），为一个最优聚合顺序所释放的总能量。
+]]></output>
+<sample_input ><![CDATA[4
+2 3 5 10
+]]></sample_input>
+<sample_output ><![CDATA[710
+]]></sample_output>
+<time_limit ><![CDATA[各个测试点1s
+]]></time_limit>
+<time_limit unit="s"><![CDATA[1]]></time_limit>
+<memory_limit unit="mb"><![CDATA[128]]></memory_limit>
+<hint ><![CDATA[]]></hint>
+<source ><![CDATA[]]></source>
+<test_input ><![CDATA[7
+23 17 212 113 71 301 33 
+]]></test_input>
+<test_input ><![CDATA[4
+2 4 5 10
+]]></test_input>
+<test_input ><![CDATA[10
+113 45 102 23 17 112 113 75 101 23 
+]]></test_input>
+<test_input ><![CDATA[15
+55 102 3 75 102 13 5 102 23 17 112 113 65 102 23 
+]]></test_input>
+<test_input ><![CDATA[20
+402 33 85 102 63 5 102 3 75 102 3 5 102 3 17 112 113 65 102 23 
+]]></test_input>
+<test_input ><![CDATA[30
+185 102 83 15 102 13 45 102 23 5 102 3 85 102 63 5 102 3 5 102 3 5 102 3 17 112 13 65 102 23 
+]]></test_input>
+<test_input ><![CDATA[40
+205 204 202 93 5 102 43 85 102 73 85 102 83 15 102 13 45 102 23 5 102 3 85 102 3 5 102 3 5 102 3 5 102 3 17 112 13 5 102 23 
+]]></test_input>
+<test_input ><![CDATA[50
+202 23 45 102 43 55 112 63 65 102 3 385 202 93 5 102 3 85 102 73 85 102 83 15 102 13 45 102 23 5 102 3 85 102 3 5 102 3 5 102 3 5 102 3 17 112 13 5 102 23 
+]]></test_input>
+<test_input ><![CDATA[70
+23 35 102 83 455 102 33 145 102 23 45 302 3 15 102 113 115 102 3 35 102 3 45 102 3 55 112 3 5 102 3 385 202 93 5 102 3 85 102 3 5 102 3 15 102 13 5 102 3 5 102 3 85 102 3 5 102 3 5 102 3 5 102 3 17 112 13 5 102 23 
+]]></test_input>
+<test_input ><![CDATA[80
+2 3 5 192 3 5 992 493 95 102 3 5 102 83 455 102 33 45 102 23 45 302 3 15 102 113 115 102 3 35 102 3 45 102 3 55 112 3 5 102 3 785 202 93 5 102 3 85 102 3 5 102 3 5 102 3 5 102 3 5 102 3 85 102 3 5 102 3 5 102 3 5 102 3 17 112 13 5 102 23 35 
+]]></test_input>
+<test_output ><![CDATA[31182687
+]]></test_output>
+<test_output ><![CDATA[780
+]]></test_output>
+<test_output ><![CDATA[7397294
+]]></test_output>
+<test_output ><![CDATA[8950112
+]]></test_output>
+<test_output ><![CDATA[54922956
+]]></test_output>
+<test_output ><![CDATA[27221274
+]]></test_output>
+<test_output ><![CDATA[56015150
+]]></test_output>
+<test_output ><![CDATA[129341576
+]]></test_output>
+<test_output ><![CDATA[328479464
+]]></test_output>
+<test_output ><![CDATA[1940277798
+]]></test_output>
+</item>
+</fps>

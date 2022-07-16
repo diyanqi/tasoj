@@ -1,0 +1,23 @@
+22 9
+a := 100101111
+b := 010001100
+c := b AND b
+d := 111000010
+e := c AND a
+f := a OR e
+g := e AND ?
+h := 000010001
+i := b OR ?
+j := d AND ?
+k := g AND h
+l := 010100000
+m := a AND a
+n := j AND ?
+o := m OR n
+p := o AND ?
+q := f OR ?
+r := 000011011
+s := 001110011
+t := 100111100
+u := l AND p
+v := g OR h

@@ -1,0 +1,120 @@
+<script src="/static/highlightjs/highlight.min.js"></script>
+<link href="/static/highlightjs/styles/vs2015.min.css" rel="stylesheet">
+<script src="/static/highlightjs/languages/cpp.min.js"></script>
+<script src="/static/highlightjs/languages/c.min.js"></script>
+<script src="/static/highlightjs/languages/python.min.js"></script>
+<script src="/static/highlightjs/languages/markdown.min.js"></script>
+<!-- <div id="temp-info-md-copy" class="mdui-invisible"></div> -->
+<script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js"></script>
+<script src="/static/markdowntool.js"></script>
+<!-- <script>
+    $(function () {
+        let infomd = document.getElementById("info-tab").childNodes[0].innerHTML;
+        console.log(infomd);
+        markdown_render_dom(document.getElementById("info-tab"), infomd);
+    })
+
+</script> -->
+
+<br>
+
+<button class="mdui-btn mdui-ripple" onclick='location.href="/contest/list"'><i
+        class="mdui-icon mdui-icon-left material-icons">arrow_back</i>返回</button>
+<br><br>
+<div class="mdui-card">
+
+    <!-- 卡片的标题和副标题 -->
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">
+            <!-- name --><button class="mdui-btn mdui-color-theme-accent mdui-ripple mdui-float-right" onclick="enter();">报名</button>
+        </div>
+        <div class="mdui-card-primary-subtitle">
+            <!-- subname -->
+        </div>
+    </div>
+
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-content">
+        <div class="mdui-tab" mdui-tab>
+            <a href="#info-tab" class="mdui-ripple">比赛说明</a>
+            <a href="#example1-tab2" class="mdui-ripple">题目列表</a>
+            <a href="#example1-tab3" class="mdui-ripple">排行榜</a>
+        </div>
+        <div id="info-tab" class="mdui-p-a-2 mdui-typo">
+            <pre class="nohighlight" id='wssb' hidden><!-- info --></pre>
+        </div>
+        <div id="example1-tab2" class="mdui-p-a-2">
+            <div class="mdui-table-fluid mdui-shadow-0">
+                <table class="mdui-table mdui-table-hoverable">
+                    <thead>
+                        <tr>
+                            <th>题号</th>
+                            <th>满分</th>
+                            <th>标题</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr onclick="window.location='/problem/1000'" style="cursor:pointer;">
+                  <td></td>
+                  <td>1000</td>
+                  <td>A+B问题</td>
+                  <td><div class="mdui-chip">
+                      <span class="mdui-chip-title">入门</span>
+                    </div></td>
+                  <td>100%</td>
+              </tr> -->
+                        <!-- list -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="example1-tab3" class="mdui-p-a-2">
+            <div class="mdui-table-fluid mdui-shadow-0">
+                <table class="mdui-table mdui-table-hoverable">
+                    <thead>
+                        <tr>
+                            <th>名次</th>
+                            <th>参赛者</th>
+                            <th>总分</th>
+                            <!-- problemskkk -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- rank -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  var md=document.getElementById("wssb").innerText;
+  $(function() {markdown_render_dom(document.getElementById("info-tab"), md);}); 
+</script>
+
+<script>
+    function enter(){
+        var url = window.location.href;
+        var index = url.lastIndexOf("\/");
+        cid = url.substring(index + 1, url.length).split('#')[0];
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open('GET', '/enter/'+cid, true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        /**
+         * 获取数据后的处理程序
+         */
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = httpRequest.responseText;//获取到json字符串，还需解析
+                console.log(kk=JSON.parse(json));
+                if(kk['status']=='succeed'){
+                    mdui.snackbar("报名成功，请刷新页面");
+                }else{
+                    mdui.snackbar("报名失败QWQ");
+                }
+            }
+        };
+    }
+</script>

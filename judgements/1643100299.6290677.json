@@ -1,0 +1,1 @@
+{"status": "Accepted", "problem_id": 1000, "language": "tobylang", "username": "toby_lai@126.com", "code": "print(\"Hello, world!\")", "msg": "", "testpoints": [{"testpoint": 1, "status": "Accepted", "msg": "", "time": 370584668, "memory": 13185024}], "score": 100, "scorerate": "100%"}

@@ -1,0 +1,2 @@
+17
+int f(int n){if (n > 1000) return n/n;if (n > 100) return n/2;if (n > 10) return n; return 7;}

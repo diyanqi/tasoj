@@ -1,0 +1,1 @@
+{"status": "Compile Error", "problem_id": 1001, "language": "cpp", "username": "diyanqi@qq.com", "code": "s=input().split()\r\nprint(int(s[0])+int(s[1]))", "msg": "scriptfile:1:1: error: 's' does not name a type\n    1 | s=input().split()\n      | ^\n"}

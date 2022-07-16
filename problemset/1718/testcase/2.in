@@ -1,0 +1,17 @@
+16 3
+a := 011
+b := 110
+c := a XOR b
+d := 110
+e := a XOR b
+f := b XOR a
+g := b XOR e
+h := 111
+i := a XOR h
+j := f XOR ?
+k := 100
+l := 000
+m := 100
+n := 110
+o := 110
+p := 110

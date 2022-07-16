@@ -1,0 +1,742 @@
+<!-- <script src="/static/echarts.js"></script> -->
+<script src="/static/echarts/echarts.min.js"></script>
+<script src="/static/macarons.js"></script>
+<script src="/static/chalk.js"></script>
+<script src="/static/walden.js"></script>
+<style>
+    .input {
+        width: 50%;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-right: 5%;
+    }
+
+    .output {
+        width: 50%;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        margin-right: 5%;
+    }
+
+    .container {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-flow: row nowrap;
+        max-width: 1140px;
+        margin: 0 auto;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+    }
+</style>
+<div class="mdui-typo">
+    <h1>
+        <button class="mdui-btn mdui-ripple" onclick='location.href="/admin/problemedit"'><i
+                class="mdui-icon mdui-icon-left material-icons">arrow_back</i>返回</button>
+        &nbsp;&nbsp;&nbsp;
+        <!-- title -->
+    </h1>
+</div><br>
+<div class="mdui-row">
+    <div class="mdui-col-sm-9 mdui-col-xs-12">
+        <div class="mdui-card">
+            <div class="mdui-card-content">
+                <div class="mdui-tab" mdui-tab>
+                    <a href="#information" class="mdui-ripple">题目内容</a>
+                    <a href="#data" class="mdui-ripple">数据点配置</a>
+                    <a href="#help" class="mdui-ripple">帮助信息</a>
+                </div>
+                <div id="information" class="mdui-p-a-2">
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>操作</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3">
+                                <div class="mdui-col">
+                                    <button class="mdui-btn mdui-color-theme-accent mdui-ripple"
+                                        onclick="savee();">保存</button>
+                                </div>
+                                <div class="mdui-col">
+                                    <button class="mdui-btn mdui-color-theme-accent mdui-ripple"
+                                        onclick="copyy();">复制</button>
+                                </div>
+                                <div class="mdui-col">
+                                    <button disabled class="mdui-btn mdui-color-theme-accent mdui-ripple"
+                                        onclick="dell();">最好不要删除</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        window['tags'] = (tagsss);
+                    </script>
+                    <script>
+                        function getTableContent(id) {
+                            var mytable = document.getElementById(id);
+                            var data = [];
+                            for (var i = 0, rows = mytable.rows.length; i < rows; i++) {
+                                for (var j = 1, cells = mytable.rows[i].cells.length; j < cells; j++) {
+                                    if (!data[i]) {
+                                        data[i] = new Array();
+                                    }
+                                    data[i][j - 1] = mytable.rows[i].cells[j].children[0].children[0].value;
+                                }
+                            }
+                            return data;
+                        }
+                        function savee() {
+                            st = ''
+                            if (document.getElementById("dis").checked) {
+                                st = "disabled"
+                            } else if (document.getElementById("pro").checked) {
+                                st = "problem"
+                            } else if (document.getElementById("con").checked) {
+                                st = "contest"
+                            }
+                            obj = {
+                                "problemid": (problem_id),
+                                "time_limit": Number(document.getElementById("timelimitinput").value),
+                                "memory_limit": Number(document.getElementById("memlimitinput").value),
+                                "title": document.getElementById("problemtitle").value,
+                                "description": document.getElementById("inp-content").innerText,
+                                "input_description": document.getElementById("inp-content2").innerText,
+                                "output_description": document.getElementById("inp-content3").innerText,
+                                "hint": document.getElementById("inp-content4").innerText,
+                                "samples": getTableContent("sampleli"),
+                                "status": st,
+                                "tags": window['tags']
+                            };
+                            console.log(obj);
+                            var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+                            httpRequest.open('POST', '/admin/problemupload', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+                            httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+                            httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+                            /**
+                             * 获取数据后的处理程序
+                             */
+                            httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+                                if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                                    var json = httpRequest.responseText;//获取到服务端返回的数据
+                                    console.log(kk = JSON.parse(json));
+                                    if (kk['status'] == 'success') {
+                                        mdui.snackbar("保存成功");
+                                    } else {
+                                        mdui.snackbar("保存失败");
+                                    }
+                                }
+                            };
+                        }
+                        function copyy() {
+                            obj = { "problemid": (problem_id) };
+                            console.log(obj);
+                            var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+                            httpRequest.open('POST', '/admin/problemcopy', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+                            httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+                            httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+                            /**
+                             * 获取数据后的处理程序
+                             */
+                            httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+                                if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                                    var json = httpRequest.responseText;//获取到服务端返回的数据
+                                    console.log(kk = JSON.parse(json));
+                                    if (kk['status'] == 'success') {
+                                        mdui.snackbar("复制到P" + String(kk['pid']) + "成功");
+                                    } else {
+                                        mdui.snackbar("复制失败");
+                                    }
+                                }
+                            };
+                        }
+                        function dell() {
+                            mdui.confirm('此操作不可撤回！！！', '您真的要删除这道题目吗？！', function () {
+                                obj = { "problemid": (problem_id) };
+                                console.log(obj);
+                                var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+                                httpRequest.open('POST', '/admin/problemdel', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+                                httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+                                httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+                                /**
+                                 * 获取数据后的处理程序
+                                 */
+                                httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+                                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                                        var json = httpRequest.responseText;//获取到服务端返回的数据
+                                        console.log(kk = JSON.parse(json));
+                                        if (kk['status'] == 'success') {
+                                            mdui.snackbar("删除成功");
+                                        } else {
+                                            mdui.snackbar("删除失败");
+                                        }
+                                    }
+                                };
+                            });
+                        }
+                        function delsample(sid) {
+                            document.getElementById("sample_" + String(sid)).remove();
+                        }
+                    </script>
+
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2"><br>
+                            <h4>题目标题</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div class="mdui-textfield">
+                                <label class="mdui-textfield-label">标题</label>
+                                <input class="mdui-textfield-input" type="text" id="problemtitle" />
+                            </div>
+                            <script>
+                                document.getElementById("problemtitle").value = `<!-- title -->`;
+                            </script>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>问题描述</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div id="test-editor">
+                                <textarea id="inp-content" style="display:none;"><!-- description --></textarea>
+                            </div>
+                            <script>
+                                $(function () {
+                                    var editor = editormd("test-editor", {
+                                        height: '400px',
+                                        syncScrolling: "single",
+                                        emoji: true,
+                                        //启动本地图片上传功能
+                                        imageUpload: true,
+                                        watch: true,
+                                        imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+                                        path: "/static/editor.md/lib/",
+                                        imageUploadURL: "/upload", //文件提交请求路径
+                                        saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+                                        previewTheme: "dark",//预览主题样式 黑色
+                                    });
+                                })
+                            </script>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>输入格式</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div id="test-editor2">
+                                <textarea id="inp-content2" style="display:none;"><!-- input --></textarea>
+                            </div>
+                            <script>
+                                $(function () {
+                                    var editor = editormd("test-editor2", {
+                                        height: '300px',
+                                        syncScrolling: "single",
+                                        emoji: true,
+                                        //启动本地图片上传功能
+                                        imageUpload: true,
+                                        watch: true,
+                                        imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+                                        path: "/static/editor.md/lib/",
+                                        imageUploadURL: "/upload", //文件提交请求路径
+                                        saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+                                        previewTheme: "dark",//预览主题样式 黑色
+                                    });
+                                })
+                            </script>
+                        </div>
+                    </div>
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>输出格式</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div id="test-editor3">
+                                <textarea id="inp-content3" style="display:none;"><!-- output --></textarea>
+                            </div>
+                            <script>
+                                $(function () {
+                                    var editor = editormd("test-editor3", {
+                                        height: '300px',
+                                        syncScrolling: "single",
+                                        emoji: true,
+                                        //启动本地图片上传功能
+                                        imageUpload: true,
+                                        watch: true,
+                                        imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+                                        path: "/static/editor.md/lib/",
+                                        imageUploadURL: "/upload", //文件提交请求路径
+                                        saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+                                        previewTheme: "dark",//预览主题样式 黑色
+                                    });
+                                })
+                            </script>
+                        </div>
+                    </div>
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>样例组</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="add_new_sample();"><i
+                                    class="mdui-icon material-icons">add</i>增添新样例</button>
+                            <script>
+                                function add_new_sample() {
+                                    document.getElementById("sampleli").innerHTML += `<tr>
+                                        <td>${String(document.getElementById("sampleli").getElementsByTagName("tr").length + 1)}</td>
+                                        <td>
+                                            <div class="mdui-textfield">
+                                                <textarea class="mdui-textfield-input" placeholder="样例输入"></textarea>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="mdui-textfield">
+                                                <textarea class="mdui-textfield-input" placeholder="样例输出"></textarea>
+                                            </div>
+                                        </td>
+                                    </tr>`;
+                                }
+                            </script>
+                            <div class="mdui-table-fluid">
+                                <table class="mdui-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>样例输入</th>
+                                            <th>样例输出</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="sampleli">
+                                        <!-- samplelists -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>说明</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div id="test-editor4">
+                                <textarea id="inp-content4" style="display:none;"><!-- tips --></textarea>
+                            </div>
+                            <script>
+                                $(function () {
+                                    var editor = editormd("test-editor4", {
+                                        height: '300px',
+                                        syncScrolling: "single",
+                                        emoji: true,
+                                        //启动本地图片上传功能
+                                        imageUpload: true,
+                                        watch: true,
+                                        imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+                                        path: "/static/editor.md/lib/",
+                                        imageUploadURL: "/upload", //文件提交请求路径
+                                        saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+                                        previewTheme: "dark",//预览主题样式 黑色
+                                    });
+                                })
+                            </script>
+                        </div>
+                    </div>
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>题目标签</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div id="tagli">
+                                <!-- taglist -->
+                            </div>
+                            <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="add_tag();">
+                                <i class="mdui-icon material-icons">add</i>
+                            </button>
+                            <script>
+                                function add_tag() {
+                                    mdui.prompt('请输入Tag名',
+                                        function (value) {
+                                            document.getElementById("tagli").innerHTML += `<div class="mdui-chip" id="chip-${value}">
+                                                <span class="mdui-chip-title">${value}</span>
+                                                <span class="mdui-chip-delete" onclick="document.getElementById('chip-${value}').remove();">
+                                                    <i class="mdui-icon material-icons">cancel</i>
+                                                </span>
+                                            </div>`;
+                                            window['tags'].push(value);
+                                        }
+                                    );
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>题目状态</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3">
+                                <div class="mdui-col">
+                                    <label class="mdui-radio mdui-m-b-1">
+                                        <input id="dis" type="radio" name="theme-layout" value="disabled" 不可用check>
+                                        <i class="mdui-radio-icon"></i>
+                                        不可用
+                                    </label>
+                                </div>
+                                <div class="mdui-col">
+                                    <label class="mdui-radio mdui-m-b-1">
+                                        <input id="pro" type="radio" name="theme-layout" value="problem" 公众可见check>
+                                        <i class="mdui-radio-icon"></i>
+                                        公众可见
+                                    </label>
+                                </div>
+                                <div class="mdui-col">
+                                    <label class="mdui-radio mdui-m-b-1">
+                                        <input id="con" type="radio" name="theme-layout" value="contest" 比赛赛题check>
+                                        <i class="mdui-radio-icon"></i>
+                                        比赛赛题
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="data" class="mdui-p-a-2">
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>上传/下载</h4>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3">
+                                <div class="mdui-col">
+                                    <!--an upload button-->
+                                    <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="upload_file();">
+                                        <i class="mdui-icon material-icons">file_upload</i>
+                                </div>
+                                <div class="mdui-col">
+                                    <!--a download button-->
+                                    <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="download_file();">
+                                        <i class="mdui-icon material-icons">file_download</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        function download_file() {
+                            window.open("/admin/download/" + (problem_id));
+                        }
+                        function upload_file() {
+                            //can only upload zip file
+                            //first, open a dialog to choose a file
+                            mdui.dialog({
+                                title: '选择文件',
+                                content: '<input type="file" id="file" name="file" accept=".zip">',
+                                buttons: [
+                                    {
+                                        text: '取消',
+                                        onClick: function () {
+                                            return;
+                                        }
+                                    },
+                                    {
+                                        text: '确认',
+                                        onClick: function () {
+                                            //get the file
+                                            var file = document.getElementById("file").files[0];
+                                            //check the file type
+                                            if (file.name.split(".")[file.name.split(".").length - 1] != "zip") {
+                                                mdui.snackbar({
+                                                    message: '只能上传zip文件',
+                                                    position: 'top'
+                                                });
+                                                return;
+                                            }
+                                            //check the file size
+                                            if (file.size > 1024 * 1024 * 10) {
+                                                mdui.snackbar({
+                                                    message: '文件大小不能超过10M',
+                                                    position: 'top'
+                                                });
+                                                return;
+                                            }
+                                            //upload the file
+                                            var formdata = new FormData();
+                                            formdata.append("myfile", file);
+                                            //创建xhr，使用ajax进行文件上传
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open("post", "/admin/upload/(problem_id)", true);
+                                            //回调
+                                            xhr.onreadystatechange = function () {
+                                                if (xhr.readyState == 4 && xhr.status == 200) {
+                                                    // document.querySelector("#callback").innerText = xhr.responseText;
+                                                    mdui.snackbar("上传成功，请刷新页面");
+                                                }
+                                            };
+                                            //获取上传的进度
+                                            // xhr.upload.onprogress = function (event) {
+                                            //     if (event.lengthComputable) {
+                                            //         var percent = event.loaded / event.total * 100;
+                                            //         document.querySelector("#progress .progress-item").style.width = percent + "%";
+                                            //     }
+                                            // }
+                                            //将formdata上传
+                                            xhr.send(formdata);
+                                        }
+                                    }
+                                ]
+                            });
+                        }
+                    </script>
+                    <div class="mdui-row">
+                        <div class="mdui-col-xs-12 mdui-col-sm-2">
+                            <h4>数据点编辑</h4>
+                            <BR>
+                            <!-- a save button -->
+                            <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="save_data();">
+                                <i class="mdui-icon material-icons">save</i>
+                            </button>
+                            <script>
+                                function getDataTableContent(id) {
+                                    var mytable = document.getElementById(id);
+                                    var data = [];
+                                    for (var i = 0, rows = mytable.rows.length; i < rows; i++) {
+                                        data[i] = [mytable.rows[i].cells[1].innerHTML, mytable.rows[i].cells[5].children[0].children[0].value];
+                                        // data[i][1]=;
+                                    }
+                                    return data;
+                                }
+                                function save_data() {
+                                    obj = {
+                                        "data": getDataTableContent("data_table"),
+                                        "problemid":(problem_id)
+                                    };
+                                    console.log(obj);
+                                    var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+                                    httpRequest.open('POST', '/admin/dataset', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+                                    httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+                                    httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+                                    /**
+                                     * 获取数据后的处理程序
+                                     */
+                                    httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+                                        if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                                            var json = httpRequest.responseText;//获取到服务端返回的数据
+                                            console.log(kk = JSON.parse(json));
+                                            if (kk['status'] == 'success') {
+                                                mdui.snackbar("保存成功");
+                                            } else {
+                                                mdui.snackbar("保存失败");
+                                            }
+                                        }
+                                    };
+                                }
+                            </script>
+                        </div>
+                        <div class="mdui-col-xs-6 mdui-col-sm-10">
+                            <!--a table that contains id, input file name,edit button, output file name,edit button, score-->
+                            <table class="mdui-table mdui-table-hoverable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>输入名</th>
+                                        <th>编辑</th>
+                                        <th>输出名</th>
+                                        <th>编辑</th>
+                                        <th>分数</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="data_table">
+                                    <!-- data table -->
+                                </tbody>
+                            </table>
+                            <!-- <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="add_data();">
+                                <i class="mdui-icon material-icons">add</i>
+                            </button> -->
+                            <script>
+                                function add_data() {
+                                    mdui.prompt('请输入ID',
+                                        function (value) {
+                                            document.getElementById("data_table").innerHTML += `<tr>
+                                                <td>${value}</td>
+                                                <td><input class="mdui-textfield" type="text" id="input-${value}" value=""></td>
+                                                <td><button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="edit_input(${value});">
+                                                    <i class="mdui-icon material-icons">edit</i>
+                                                </button></td>
+                                                <td><input class="mdui-textfield" type="text" id="output-${value}" value=""></td>
+                                                <td><button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="edit_output(${value});">
+                                                    <i class="mdui-icon material-icons">edit</i>
+                                                </button></td>
+                                                <td><input class="mdui-textfield" type="text" id="score-${value}" value=""></td>
+                                            </tr>`;
+                                            window['data'].push({
+                                                'id': value,
+                                                'input': '',
+                                                'output': '',
+                                                'score': ''
+                                            });
+                                        }
+                                    );
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div id="help" class="mdui-p-a-2">
+                    <h3>上传测试数据时请注意：</h3>
+                    1. 数据文件名不能重复，否则会覆盖<br>
+                    2. 数据文件名必须合法<br>
+                    3. 输入数据文件名后缀一律为.in<br>
+                    4. 输出数据文件名后缀一律为.out<br>
+                    5. 输入输出文件名去掉后缀的部分应当相同<br>
+                    6. 分数必须为数字<br>
+                    7. 上传的ZIP压缩包应直接装载数据文件，不能有其他文件<br>
+                    例如：<br>
+                    data.zip<br>
+                    |- tas1.in<br>
+                    |- tas1.out<br>
+                    |- tas2.in<br>
+                    |- tas2.out<br>
+                    |- tas3.in<br>
+                    |- tas3.out<br>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div class="mdui-col-sm-3 mdui-col-xs-12">
+        <div class="mdui-card">
+            <div class="mdui-card-content">
+                <div class="mdui-typo">
+                    <h5 class="mdui-text-color-theme">时间限制</h5>
+                    <div class="mdui-textfield">
+                        <input class="mdui-textfield-input" type="text" placeholder="单位：ms" id="timelimitinput" />
+                    </div>
+                    <script>document.getElementById("timelimitinput").value = `<!-- time_limit -->`</script>
+                    <h5 class="mdui-text-color-theme">空间限制</h5>
+                    <div class="mdui-textfield">
+                        <input class="mdui-textfield-input" type="text" placeholder="单位：MB" id="memlimitinput" />
+                    </div>
+                    <script>document.getElementById("memlimitinput").value = `<!-- memory_limit -->`</script>
+                    <h5 class="mdui-text-color-theme">提交状态</h5>
+                    <div id="main" style="width: 100%;height:112%;"></div>
+                    <button class="mdui-btn" mdui-dialog="{target: '#chart-open-dlg'}">显示更多...</button>
+                    <!-- status -->
+                    <hr>
+                </div>
+            </div>
+            <div class="mdui-card-actions mdui-card-actions-stacked">
+                <button class="mdui-btn mdui-ripple"
+                    onclick='window.open("/search?q=problemid%3A(problem_id)#judgement");'>本题提交状态</button>
+                <button class="mdui-btn mdui-ripple"
+                    onclick='window.open("/search?q=(problem_id)+(username)#judgement");'>我的提交记录</button>
+                <button class="mdui-btn mdui-ripple"
+                    onclick='window.open("/search?q=problemid%3A(problem_id)#ask")'>本题提问</button>
+                <button class="mdui-btn mdui-ripple"
+                    onclick='window.open("/search?q=problemid%3A(problem_id)#article")'>本题题解</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/highlightjs/highlight.min.js"></script>
+<link href="/static/highlightjs/styles/vs2015.min.css" rel="stylesheet">
+<script src="/static/highlightjs/languages/cpp.min.js"></script>
+<script src="/static/highlightjs/languages/c.min.js"></script>
+<script src="/static/highlightjs/languages/python.min.js"></script>
+<script src="/static/highlightjs/languages/markdown.min.js"></script>
+<!-- <div id="temp-info-md-copy" class="mdui-invisible"></div> -->
+<script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js"></script>
+<script src="/static/markdowntool.js"></script>
+<script>
+    // $(function() {
+    //     var md=document.getElementById("test-editormd-markdown-doc").innerText;
+    //     markdown_render_dom(document.getElementById("test-editormd-view"), md);
+    //     md=document.getElementById("test-editormd-markdown-doc").innerText;
+    //     markdown_render_dom(document.getElementById("test-editormd-view2"), md);
+    //     md=document.getElementById("test-editormd-markdown-doc").innerText;
+    //     markdown_render_dom(document.getElementById("test-editormd-view3"), md);
+    //     md=document.getElementById("test-editormd-markdown-doc").innerText;
+    //     markdown_render_dom(document.getElementById("test-editormd-view4"), md);
+    // }); 
+</script>
+<br>
+
+<div class="mdui-dialog" id="chart-open-dlg">
+    <br>
+    <div class="mdui-container mdui-typo">
+        <p>时间限制：
+            <!-- time_limit -->ms
+        </p>
+        <p>空间限制：
+            <!-- memory_limit -->MB
+        </p>
+        <div id="chart" style="width:30vh;height:45vh;"></div>
+    </div>
+    <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>关闭</button>
+    </div>
+</div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'), "macarons");
+    // 指定图表的配置项和数据
+    var option = {
+        series: {
+            name: '',
+            stillShowZeroSum: false,
+            type: 'pie',
+            radius: '50%',
+            // roseType: 'angle',
+            data: (data),
+            label: {
+                avoidLabelOverlap: true,
+                formatter: function (e) {
+                    let data = e.data;
+                    return `${data.name}: ${data.value}`
+                }
+            },
+        }
+    };
+    myChart.setOption(option);
+
+    // 详细版
+    var myChart2 = echarts.init(document.getElementById('chart'), "macarons");
+    var option2 = {
+        series: {
+            name: '',
+            stillShowZeroSum: false,
+            type: 'pie',
+            radius: '32%',
+            // roseType: 'angle',
+            data: (data),
+            label: {
+                formatter: function (e) {
+                    let data = e.data;
+                    return `${data.name}:${data.value}\n${e.percent}%`
+                }
+            },
+        }
+    };
+    myChart2.setOption(option2);
+</script>
+
+<script src="/static/editor.md/lib/marked.min.js"></script>
+<!-- 第三方界面样式文件google -->
+<script src="/static/google-code-prettify/prettify.js"></script>
+<script src="/static/editor.md/lib/underscore.min.js"></script>
+<script src="/static/editor.md/lib/sequence-diagram.min.js"></script>
+<script src="/static/editor.md/lib/flowchart.min.js"></script>
+<script src="/static/editor.md/editormd.js"></script>

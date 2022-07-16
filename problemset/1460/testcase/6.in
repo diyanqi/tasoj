@@ -1,0 +1,6 @@
+5
+HBox package
+VBox packing
+package.pack(packing)
+Widget packpackpa(13,13)
+packing.pack(packpackpa)

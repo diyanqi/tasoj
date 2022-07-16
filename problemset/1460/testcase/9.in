@@ -1,0 +1,17 @@
+16
+Widget w(100,100)
+VBox v
+HBox h
+h.set_spacing(10)
+v.set_spacing(10)
+v.set_border(10)
+h.pack(w)
+h.pack(w)
+h.pack(w)
+h.pack(w)
+h.pack(w)
+v.pack(h)
+v.pack(h)
+v.pack(h)
+v.pack(h)
+v.pack(h)

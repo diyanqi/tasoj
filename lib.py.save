@@ -1,0 +1,247 @@
+from xml.dom.minidom import parse
+from markdown import markdown
+import json
+import html
+import requests
+import time
+import os
+import re
+import random,string
+import smtplib
+import email
+import shutil
+# 负责构造文本
+from email.mime.text import MIMEText
+# 负责构造图片
+from email.mime.image import MIMEImage
+# 负责将多个对象集合起来
+from email.mime.multipart import MIMEMultipart
+from email.header import Header
+
+import hashlib
+# 哈希md5
+def get_hash(string:str):
+    return hashlib.md5(string.encode("utf-8")).hexdigest()
+
+def genRandomString(slen=10):
+    return ''.join(random.sample(string.ascii_letters + string.digits, slen))
+
+def email2nickname(email):
+    try:
+        return json.loads(readf("./users/userandpass.json"))[email]['username']
+    except:
+        return None
+
+
+def send_pl(sender,receiver): # 发送私信
+    pass
+
+
+def tryint(s):
+    try:
+        return int(s)
+    except ValueError:
+        return s
+
+def str2int(v_str):
+    return [tryint(sub_str) for sub_str in re.split('([0-9]+)', v_str)]
+
+def real_follow(follower,followee): # 关注发起者，被关注者，使用email
+    if(not is_following(follower,followee)):
+        uid=email2usrid(follower)# follower uid
+        msg={"user":email2nickname(follower),"msg":f'<a href="/user/{uid}">{email2nickname(follower)}</a> 关注了你'}
+        send_notice(email2usrid(followee),"关注",time.time(),json.dumps(msg),f"/user/{email2usrid(followee)}")
+    er=json.loads(readf("./users/follow_list.json")) # follow_list {"关注发起者":["被关注1","2"], ...}
+    ee=json.loads(readf("./users/followed_list.json")) # followed {"被关注":["关注着1",..],..}
+    if(follower not in er.keys()):
+        er[follower]=[]
+    if(followee not in ee.keys()):
+        ee[followee]=[]
+    if(followee not in er[follower]):
+        er[follower].append(followee)
+    if(follower not in ee[followee]):
+        ee[followee].append(follower)
+    savef("./users/follow_list.json",json.dumps(er))
+    savef("./users/followed_list.json",json.dumps(ee))
+
+def real_unfollow(follower,followee): # 关注发起者，被关注者，使用email
+    er=json.loads(readf("./users/follow_list.json")) # follow_list {"关注发起者":["被关注1","2"], ...}
+    ee=json.loads(readf("./users/followed_list.json")) # followed {"被关注":["关注着1",..],..}
+    if(follower not in er.keys()):
+        er[follower]=[]
+    if(followee not in ee.keys()):
+        ee[followee]=[]
+    if(followee in er[follower]):
+        er[follower].remove(followee)
+    if(follower in ee[followee]):
+        ee[followee].remove(follower)
+    savef("./users/follow_list.json",json.dumps(er))
+    savef("./users/followed_list.json",json.dumps(ee))
+
+def is_following(follower,followee):
+    er=json.loads(readf("./users/follow_list.json")) # follow_list {"关注发起者":["被关注1","2"], ...}
+    if(follower not in er.keys()):
+        er[follower]=[]
+    return followee in er[follower]
+
+def sort_humanly(v_list):
+    return sorted(v_list, key=str2int)
+
+def email2usrid(email):
+    try:
+        return json.loads(readf("./users/e2u.json"))[email]
+    except:
+        return "0"
+
+def userid2email(userid):
+    try:
+        j=json.loads(readf("./users/e2u.json"))
+        for i in j:
+            if(j[i]==userid):
+                return i
+        return None
+    except:
+        return None
+
+def get_problem_list():
+    file_dir='./problemset'
+    for kk,dirs,kkk in os.walk(file_dir):
+        return dirs
+
+def get_judgement_list():
+    file_dir='./judgements'
+    for kk,dirs,kkk in os.walk(file_dir):
+        return kkk
+def make_bandage_circle(color,icon,text):
+    # 创建一个bandage的html
+    # color: mdui-color-后面的内容
+    # icon: mdui的图标名称
+    # text:名字
+    return '<button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-color-%color% mdui-ripple" mdui-tooltip="{content: \'%text%\', position: \'top\'}"><i class="mdui-icon material-icons">%icon%</i></button>'\
+        .replace("%color%",color).replace("%icon%",icon).replace("%text%",text)
+def get_problem_old(problem_id):
+    ret={}
+    dom=pafrom xml.dom.minidom import parse
+from markdown import markdown
+import json
+import html
+import requests
+import time
+import os
+import re
+import random,string
+import smtplib
+import email
+import shutil
+# 负责构造文本
+from email.mime.text import MIMEText
+# 负责构造图片
+from email.mime.image import MIMEImage
+# 负责将多个对象集合起来
+from email.mime.multipart import MIMEMultipart
+from email.header import Header
+
+import hashlib
+# 哈希md5
+def get_hash(string:str):
+    return hashlib.md5(string.encode("utf-8")).hexdigest()
+
+def genRandomString(slen=10):
+    return ''.join(random.sample(string.ascii_letters + string.digits, slen))
+
+def email2nickname(email):
+    try:
+        return json.loads(readf("./users/userandpass.json"))[email]['username']
+    except:
+        return None
+
+
+def send_pl(sender,receiver): # 发送私信
+    pass
+
+
+def tryint(s):
+    try:
+        return int(s)
+    except ValueError:
+        return s
+
+def str2int(v_str):
+    return [tryint(sub_str) for sub_str in re.split('([0-9]+)', v_str)]
+
+def real_follow(follower,followee): # 关注发起者，被关注者，使用email
+    if(not is_following(follower,followee)):
+        uid=email2usrid(follower)# follower uid
+        msg={"user":email2nickname(follower),"msg":f'<a href="/user/{uid}">{email2nickname(follower)}</a> 关注了你'}
+        send_notice(email2usrid(followee),"关注",time.time(),json.dumps(msg),f"/user/{email2usrid(followee)}")
+    er=json.loads(readf("./users/follow_list.json")) # follow_list {"关注发起者":["被关注1","2"], ...}
+    ee=json.loads(readf("./users/followed_list.json")) # followed {"被关注":["关注着1",..],..}
+    if(follower not in er.keys()):
+        er[follower]=[]
+    if(followee not in ee.keys()):
+        ee[followee]=[]
+    if(followee not in er[follower]):
+        er[follower].append(followee)
+    if(follower not in ee[followee]):
+        ee[followee].append(follower)
+    savef("./users/follow_list.json",json.dumps(er))
+    savef("./users/followed_list.json",json.dumps(ee))
+
+def real_unfollow(follower,followee): # 关注发起者，被关注者，使用email
+    er=json.loads(readf("./users/follow_list.json")) # follow_list {"关注发起者":["被关注1","2"], ...}
+    ee=json.loads(readf("./users/followed_list.json")) # followed {"被关注":["关注着1",..],..}
+    if(follower not in er.keys()):
+        er[follower]=[]
+    if(followee not in ee.keys()):
+        ee[followee]=[]
+    if(followee in er[follower]):
+        er[follower].remove(followee)
+    if(follower in ee[followee]):
+        ee[followee].remove(follower)
+    savef("./users/follow_list.json",json.dumps(er))
+    savef("./users/followed_list.json",json.dumps(ee))
+
+def is_following(follower,followee):
+    er=json.loads(readf("./users/follow_list.json")) # follow_list {"关注发起者":["被关注1","2"], ...}
+    if(follower not in er.keys()):
+        er[follower]=[]
+    return followee in er[follower]
+
+def sort_humanly(v_list):
+    return sorted(v_list, key=str2int)
+
+def email2usrid(email):
+    try:
+        return json.loads(readf("./users/e2u.json"))[email]
+    except:
+        return "0"
+
+def userid2email(userid):
+    try:
+        j=json.loads(readf("./users/e2u.json"))
+        for i in j:
+            if(j[i]==userid):
+                return i
+        return None
+    except:
+        return None
+
+def get_problem_list():
+    file_dir='./problemset'
+    for kk,dirs,kkk in os.walk(file_dir):
+        return dirs
+
+def get_judgement_list():
+    file_dir='./judgements'
+    for kk,dirs,kkk in os.walk(file_dir):
+        return kkk
+def make_bandage_circle(color,icon,text):
+    # 创建一个bandage的html
+    # color: mdui-color-后面的内容
+    # icon: mdui的图标名称
+    # text:名字
+    return '<button class="mdui-btn mdui-btn-icon mdui-btn-dense mdui-color-%color% mdui-ripple" mdui-tooltip="{content: \'%text%\', position: \'top\'}"><i class="mdui-icon material-icons">%icon%</i></button>'\
+        .replace("%color%",color).replace("%icon%",icon).replace("%text%",text)
+def get_problem_old(problem_id):
+    ret={}
+    dom=pa

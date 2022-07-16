@@ -1,0 +1,13 @@
+{
+    "title":"入门篇",
+    "subtitle":"您将在本章学习到基础的语法和语义，以及顺序和分支结构。",
+    "image":"/image/20220219154227.jpeg",
+    "introduction":"对于一天的计划，我们总是从早定到晚，当有特殊情况发生时，我们又必须做出抉择。这就像是编程的基本思路。",
+    "content":[
+        {"type":"problem","title":"小试牛刀 - 判断点在直线上","link":"/problem/1006"},
+        {"type":"problem","title":"进阶 - 出租车计费","link":"/problem/1007"},
+        {"type":"problem","title":"继续 - 分段函数","link":"/problem/1008"},
+        {"type":"problem","title":"多重判断 - 中位数","link":"/problem/1012"},
+        {"type":"problem","title":"拓展 - 五数排序","link":"/problem/4344"}
+    ]
+}

@@ -1,0 +1,1 @@
+{"status": "Accepted", "problem_id": 1001, "language": "python", "username": "diyanqi@qq.com", "code": "print(2)", "msg": "", "testpoints": [{"testpoint": 1, "status": "Accepted", "msg": "", "time": 105991572, "memory": 9105408}], "score": 100, "scorerate": "100%"}

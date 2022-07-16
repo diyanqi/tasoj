@@ -1,0 +1,12 @@
+{
+    "title":"模拟",
+    "subtitle":"在开发项目，或是解决日常生活中的问题，计算机就会发挥模拟的功能。",
+    "image":"/image/20220305171601.gif",
+    "introduction":"在本章的学习中，您将锻炼模拟技巧。",
+    "content":[
+        {"type":"problem","title":"氵","link":"/problem/1020"},
+        {"type":"problem","title":"小试牛刀+优化","link":"/problem/4345"},
+        {"type":"problem","title":"正则表达式","link":"/problem/1214"},
+        {"type":"problem","title":"智力测试","link":"/problem/1018"}
+    ]
+}

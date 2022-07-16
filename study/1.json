@@ -1,0 +1,11 @@
+{
+    "title":"走进OI",
+    "subtitle":"在本章学习中，您将初步了解什么是OI，并由此走进OI的世界。",
+    "image":"/image/20220219110654.jpeg",
+    "introduction":"**OI**是什么？它又将如何被应用到我们的生活中？让我们一起来了解OI，并走进OI的世界。",
+    "content":[
+        {"type":"outerlink","title":"什么是OI","link":"https://baike.baidu.com/item/%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%A5%A5%E8%B5%9B/1147921"},
+        {"type":"article","title":"一切的基石","link":"/article/4"},
+        {"type":"problem","title":"A+B实战演练","link":"/problem/1000"}
+    ]
+}

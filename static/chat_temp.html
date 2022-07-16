@@ -1,0 +1,310 @@
+<br>
+<script src="/static/highlightjs/highlight.min.js"></script>
+<link href="/static/highlightjs/styles/vs2015.min.css" rel="stylesheet">
+<script src="/static/highlightjs/languages/cpp.min.js"></script>
+<script src="/static/highlightjs/languages/c.min.js"></script>
+<script src="/static/highlightjs/languages/python.min.js"></script>
+<script src="/static/highlightjs/languages/markdown.min.js"></script>
+<!-- <div id="temp-info-md-copy" class="mdui-invisible"></div> -->
+<script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js"></script>
+<script src="/static/markdowntool.js"></script>
+<script>
+    $(function() {
+        window['origin'] = document.getElementById("test-editormd-markdown-doc").innerText;
+        var md=document.getElementById("test-editormd-markdown-doc").innerText;
+        markdown_render_dom(document.getElementById("test-editormd-view"), md);
+    }); 
+</script>
+<h1>
+  <button class="mdui-btn mdui-ripple" onclick='window.history.go(-1);'><i
+      class="mdui-icon mdui-icon-left material-icons">arrow_back</i>返回上一页</button>
+</h1>
+<div style="float: left;width: 79%;">
+  <div class="mdui-card">
+
+    <!-- 卡片头部，包含头像、标题、副标题-->
+    <div class="mdui-card-header">
+      <img class="mdui-card-header-avatar" src="avatar.jpg" />
+      <div class="mdui-card-header-title">
+        <!-- user -->
+      </div>
+      <div class="mdui-card-header-subtitle">
+        <!-- oneword -->
+      </div>
+    </div>
+
+    <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
+    <!--<div class="mdui-card-media">
+      <img src="/static/card.jpg"/>-->
+
+    <!-- 卡片中可以包含一个或多个菜单按钮 -->
+    <!--<div class="mdui-card-menu">
+        <button class="mdui-btn mdui-btn-icon mdui-text-color-white"><i class="mdui-icon material-icons">share</i></button>
+      </div>
+    </div>-->
+
+    <!-- 卡片的标题和副标题 -->
+    <!-- <div class="mdui-card-primary"> -->
+    <!-- <div class="mdui-card-primary-title">测评记录 judge_id</div> -->
+    <!-- <div class="mdui-card-primary-subtitle">author的代码</div> -->
+    <!-- </div> -->
+
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-content">
+      <div id="test-editormd-view" class="mdui-typo">
+        <textarea style="display: none;" id="test-editormd-markdown-doc"><!-- info --></textarea>
+      </div>
+    </div>
+
+
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+
+      <button class="mdui-btn mdui-btn-icon mdui-float-right"><i
+          class="mdui-icon material-icons">expand_more</i></button>
+    </div>
+  </div>
+  <br>
+  <h1>评论与回复</h1>
+  <hr />
+  <!-- lists -->
+</div>
+<div class="mdui-card" style="float: right;width: 20%;">
+  <div class="mdui-card-content">
+    <div class="mdui-typo">
+      <h5 class="mdui-text-color-theme">发布时间</h5>
+      <!-- time -->
+    </div>
+  </div>
+  <div class="mdui-card-actions mdui-card-actions-stacked">
+    <button class="mdui-btn mdui-ripple" onclick="reply();">回复:
+      <!-- reply -->
+    </button>
+    <button class="mdui-btn mdui-ripple" onclick="like();">点赞:
+      <!-- like -->
+    </button>
+    <button class="mdui-btn mdui-ripple" onclick="rebenben();">转犇:
+      <!-- rebenben -->
+    </button>
+  </div>
+</div>
+<script>$(function () {
+  window['origin']=document.getElementById("test-editormd-markdown-doc").innerText;
+    editormd.markdownToHTML("test-editormd-view", {
+      theme: "dark",
+      previewTheme: "dark",
+      editorTheme: "pastel-on-dark",
+      htmlDecode: "style,script,iframe", // you can filter tags decode
+      emoji: true,
+      taskList: true,
+      tex: true, // 默认不解析
+      flowChart: false, // 默认不解析
+      sequenceDiagram: true, // 默认不解析
+      path: "/static/editor.md/lib/"
+    });
+  });document.getElementById("test-editormd-view").classList.add("mdui-color-transparent");//ohhhhhhhh
+                    document.getElementById("test-editormd-view").classList.add("mdui-text-color-theme-text");</script>
+<script src="/static/editor.md/lib/marked.min.js"></script>
+<!-- 第三方界面样式文件google -->
+<script src="/static/google-code-prettify/prettify.js"></script>
+<script src="/static/editor.md/lib/underscore.min.js"></script>
+<script src="/static/editor.md/lib/sequence-diagram.min.js"></script>
+<script src="/static/editor.md/lib/flowchart.min.js"></script>
+<script src="/static/editor.md/editormd.js"></script>
+<script>
+  function reply() {
+    mdui.dialog({
+      title: '回复',
+      content: `<div style="height:355px;">
+      <div id="test-editor">
+                            <textarea id="inp-content" style="display:none;"></textarea>
+                        </div></div>
+                        <div style="float:right;"><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="send_reply();">回复</button></div>`,
+      buttons: []
+    });
+    var secScript = document.createElement("script");
+    secScript.setAttribute("type", "text/javascript");
+    secScript.innerHTML = `$(function () {
+            var editor = editormd("test-editor", {
+                height: '350px',
+                syncScrolling: "single",
+                emoji: true,
+                //启动本地图片上传功能
+                imageUpload: true,
+                watch: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+                path: "/static/editor.md/lib/",
+                imageUploadURL: "/upload", //文件提交请求路径
+                saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+                previewTheme: "dark",//预览主题样式 黑色
+            });
+        })`;
+    document.body.insertBefore(secScript, document.body.lastChild);
+  }
+  function like() {
+    var url = window.location.href;
+    var index = url.lastIndexOf("\/");
+    str = url.substring(index + 1, url.length).split("#")[0];
+    obj = { 'benbenid': Number(str) };
+    var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+    httpRequest.open('POST', '/benben/like', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+    httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+    httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+    httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+      if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+        var json = httpRequest.responseText;//获取到服务端返回的数据
+        console.log(kk = JSON.parse(json));
+        if (kk['status'] == 'failed_already_liked') {
+          mdui.snackbar("已点赞……");
+        } else {
+          location.reload()
+          mdui.snackbar({
+            message: '点赞成功',
+            buttonText: '没毛病',
+            onClick: function () {
+              location.href = "/";
+            },
+            onButtonClick: function () {
+              location.href = "/";
+            },
+            onClose: function () {
+              location.reload()
+            }
+          });
+        }
+      }
+    };
+  }
+</script>
+<script>
+  function send_reply() {
+    var url = window.location.href;
+    var index = url.lastIndexOf("\/");
+    benbenid = url.substring(index + 1, url.length).split('#')[0];
+    obj = { 'msg': document.getElementById("inp-content").innerText, "benbenid": benbenid };
+    var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+    httpRequest.open('POST', '/benben/reply', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+    httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+    httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+    httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+      if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+        var json = httpRequest.responseText;//获取到服务端返回的数据
+        console.log(kk = JSON.parse(json));
+        if (kk['status'] == 'failed') {
+          mdui.snackbar("发送失败……");
+        } else {
+          location.reload()
+          mdui.snackbar({
+            message: '发送成功',
+            buttonText: '没毛病',
+            onClick: function () {
+              location.href = "/";
+            },
+            onButtonClick: function () {
+              location.href = "/";
+            },
+            onClose: function () {
+              location.reload()
+            }
+          });
+        }
+      }
+    };
+  }
+</script>
+<script>
+  function kkzb(bbid){
+    location.href="/chat/"+String(bbid)+"#rebenben";
+  }
+</script>
+<script>
+  function rebenben() {
+    mdui.dialog({
+      title: '转犇',
+      content: `<div style="height:355px;">
+    <div id="test-editor3">
+                          <textarea id="inp-content3" style="display:none;">> `+window['origin'].replace(/\n/g, "\n> ")+`\n\n</textarea>
+                      </div></div>
+                      <div style="float:right;"><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="send_rebenben();">发射！</button></div>`,
+      buttons: []
+    });
+    var secScript = document.createElement("script");
+    secScript.setAttribute("type", "text/javascript");
+    secScript.innerHTML = `$(function () {
+          var editor3 = editormd("test-editor3", {
+              height: '350px',
+              syncScrolling: "single",
+              emoji: true,
+              //启动本地图片上传功能
+              imageUpload: true,
+              watch: true,
+              imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+              path: "/static/editor.md/lib/",
+              imageUploadURL: "/upload", //文件提交请求路径
+              saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+              previewTheme: "dark",//预览主题样式 黑色
+          });
+      })`;
+    document.body.insertBefore(secScript, document.body.lastChild);
+  }
+  function send_rebenben_real() {
+        obj = { 'msg': document.getElementById("inp-content3").innerText };
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+        httpRequest.open('POST', '/send_benben', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+        httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                var json = httpRequest.responseText;//获取到服务端返回的数据
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'failed') {
+                    mdui.snackbar("发送失败……");
+                } else {
+                    mdui.snackbar({
+                        message: '发送成功',
+                        buttonText: '没毛病',
+                        onClick: function () {
+                            location.reload()
+                        },
+                        onButtonClick: function () {
+                            location.reload()
+                        },
+                        onClose: function () {
+                            location.reload()
+                        }
+                    });
+                }
+            }
+        };
+    }
+  function send_rebenben() {
+    send_rebenben_real();
+    var url = window.location.href;
+    var index = url.lastIndexOf("\/");
+    benbenid = url.substring(index + 1, url.length).split('#')[0];
+    obj = {"benbenid": benbenid };
+    var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+    httpRequest.open('POST', '/benben/rebenben', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+    httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+    httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+    httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+      if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+        var json = httpRequest.responseText;//获取到服务端返回的数据
+        console.log(kk = JSON.parse(json));
+        if (kk['status'] == 'failed') {
+          mdui.snackbar("发送失败……");
+        } else {
+          ;
+        }
+      }
+    };
+  }
+</script>
+<script>
+  var url = window.location.href;
+    var index = url.lastIndexOf("\/");
+    cmd = url.substring(index + 1, url.length).split('#')[1];
+    if(cmd=="rebenben"){
+      setTimeout(function() { rebenben(); }, 500);
+    }
+</script>

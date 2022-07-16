@@ -1,0 +1,1 @@
+{"status": "Wrong Answer", "problem_id": 1000, "language": "tobylang", "username": "toby_lai@126.com", "code": "print(\"Hello, world!\")", "msg": "", "testpoints": [{"testpoint": 1, "status": "Time Limit Exceeded", "msg": "", "time": 114942537, "memory": 8880128}], "score": 0, "scorerate": "0%"}

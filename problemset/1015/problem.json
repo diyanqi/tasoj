@@ -1,0 +1,64 @@
+{
+    "title": "街区寻路",
+    "description": {
+        "format": "markdown",
+        "value": "*tobylai* 在一个城市的 $ S $ 号街区，他想从这里用最短的距离到达街区 $ T $。\n已知 $ M $ 条道路和 $ N $ 个街区，每条道路连接着一个街区和另一个街区，每条道路有一个道路长度 $ w $，道路是双向的。\n请你求出从 $ S $ 号街区到 $ T $号街区的最短距离。"
+    },
+    "tags": [
+        "dijkstra",
+        "SPFA",
+        "最短路","图"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "第一行输入四个整数 $ N $,$ M $,$ S $,$ T $，分别代表街区个数、道路条数、*tobylai*所在的街区、要到达的街区\n接下来的$ M $行，每行三个整数 $ u $,$ v $,$ w $ 代表道路的一端、另一端和道路长度"
+    },
+    "output_description": {
+        "format": "markdown",
+        "value": "输出$ S $到$ T $的最短路"
+    },
+    "test_case_score": [
+        {
+            "score": 20,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 20,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 20,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 20,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 20,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": "1<=$ N $<=300,1<=$ M $<=1000"
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "5 5 1 2\n1 3 2\n1 2 6\n3 5 3\n5 4 4\n4 2 5",
+            "output": "6\n"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "",
+    "answers": []
+}

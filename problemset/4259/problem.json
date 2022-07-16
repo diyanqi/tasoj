@@ -1,0 +1,93 @@
+{
+    "title": "attract unlead",
+    "type": "problem",
+    "description": {
+        "format": "html",
+        "value": "Mrs.Chen\u662f\u4e00\u4e2a\u5f88\u8ba4\u771f\u5f88\u79f0\u804c\u7684\u8bed\u6587\u8001\u5e08&nbsp; ......\n\u6240\u4ee5,\u5f53\u5979\u770b\u5230\u5b66\u751f\u4f5c\u6587\u91cc\u7684\u4eba\u7269\u5173\u7cfb\u63cf\u8ff0\u5f97\u975e\u5e38\u7684\u9ebb\u70e6\u7684\u65f6\u5019,\u5979\u975e\u5e38\u751f\u6c14,\u4e8e\u662f\u5ba3\u5e03:\u51e1\u662f\u4f5c\u6587\u91cc\u6709\u5197\u4f59\u5173\u7cfb\u7684,\u4e00\u7387\u7f5a\u6284\u51fa\u5e08\u886810\u6b21...\u540c\u5b66\u4eec\u975e\u5e38\u7684\u6050\u60e7,\u4e8e\u662f,\u6bcf\u5f53\u4ed6\u4eec\u5199\u51fa\u4e00\u7bc7\u4f5c\u6587,\u90fd\u8981\u62ff\u6765\u4f60\u8fd9\u4e2a\u8bed\u6587\u517cOI\u5929\u624d\u8fd9\u91cc,\u95ee\u4f60\u6709\u6ca1\u6709\u5197\u4f59\u7684\u5173\u7cfb&nbsp; ......&nbsp; \u65f6\u95f4\u4e00\u4e45,\u4f60\u4e5f\u70e6\u4e86,\u4e8e\u662f\u5c31\u60f3\u5199\u4e2a\u7a0b\u5e8f\u6765\u4ee3\u52b3&nbsp; ...\n\n\u73b0\u5728\u8fd9\u91cc\u6709\u4e00\u7bc7\u4f5c\u6587,\u6709n\u53e5\u63cf\u8ff0\u4eba\u7269\u5173\u7cfb\u7684\u53e5\u5b50,\u63cf\u8ff0\u4e86n\u4e2a\u4eba\u7684\u5173\u7cfb\n\u6bcf\u6761\u53e5\u5b50\u7684\u5b9a\u4e49\u662f\u8fd9\u6837\u7684\nX&nbsp; Y\n\u5b83\u7684\u610f\u601d\u662f:X\u8ba4\u8bc6Y&nbsp; Y\u4e5f\u8ba4\u8bc6X\n\n\u73b0\u5728\u8981\u4f60\u6c42\u51fa\u6587\u4e2d\u5197\u4f59\u5173\u7cfb\u7684\u6570\u76ee.\n\n\u6ce8\u610f:&nbsp; \u5047\u5982A\u8ba4\u8bc6B,B\u8ba4\u8bc6C,\u5219A\u4e5f\u8ba4\u8bc6C\n\n\u5197\u4f59\u5173\u7cfb\u7684\u5b9a\u4e49\u662f\u6307&nbsp; :&nbsp; \u5373\u4f7f\u6ca1\u6709\u8fd9\u6761\u5173\u7cfb,\u539f\u56fe\u7684\u6240\u6709\u5173\u7cfb\u7167\u6837\u6210\u7acb.\n"
+    },
+    "tags": [
+        "\u611f\u8c22Vivian&nbsp"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "\u7b2c\u4e00\u884c,\u4e24\u4e2a\u6574\u6570,\u8868\u793a\u53e5\u5b50\u6570\u91cf(n)\uff0c\u8868\u793a\u4eba\u6570(m)\u3002\n\u63a5\u4e0b\u6765n\u884c,\u6bcf\u884c\u4e24\u4e2a\u6570,\u610f\u4e49\u5728\u63cf\u8ff0\u91cc\u5df2\u7ecf\u8bf4\u4e86.&nbsp \n"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "\u4e00\u4e2a\u6574\u6570,\u8868\u793a\u5197\u4f59\u5173\u7cfb\u7684\u6570\u76ee.\n"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": "1&lt; =n,m&lt; =1000\n"
+    },
+    "time_limit": 1000,
+    "memory_limit": 128,
+    "samples": [
+        {
+            "input": "3 3\n1 2\n1 3\n2 3\n",
+            "output": "1\n"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "print('Hello, world!')"
+        }
+    ]
+}

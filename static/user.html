@@ -1,0 +1,130 @@
+<br>
+<!-- <style>
+    #container {
+        overflow: auto;
+        /* white-space: nowrap; */
+    }
+
+    .lable {
+        display: inline-block;
+    }
+</style> -->
+<div class="mdui-card">
+    <!-- 卡片头部，包含头像、标题、副标题 -->
+    <div class="mdui-card-header">
+        <img class="mdui-card-header-avatar" src="/users_byid/<!-- userid -->/avatar.png" />
+        <div class="mdui-card-header-title">
+            <!-- username -->
+            <!-- bandages -->
+        </div>
+        <div class="mdui-card-header-subtitle">
+            <!-- oneword -->
+        </div>
+    </div>
+    <!-- <div class="mdui-col" style="float: right;"></div> -->
+    <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
+    <div class="mdui-card-media">
+        <img src="/users_byid/<!-- userid -->/header.png" />
+
+        <!-- 卡片中可以包含一个或多个菜单按钮 -->
+        <div class="mdui-card-menu">
+            <!-- <button class="mdui-btn mdui-btn-icon mdui-text-color-white">
+        <i class="mdui-icon material-icons">share</i>
+      </button> -->
+            <a class="mdui-btn mdui-ripple mdui-btn-dense" href="/private/<!-- userid -->">私信</a>
+            <button class="mdui-btn  mdui-btn-dense mdui-ripple mdui-color-theme-accent" onclick="follow();">关注</button>
+        </div>
+    </div>
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-content">
+        <div class="mdui-tab" mdui-tab>
+            <a href="#intro" class="mdui-ripple">简介</a>
+            <a href="#ex" class="mdui-ripple">练习</a>
+            <!-- <a href="#act" class="mdui-ripple">动态</a> -->
+            <a href="#follower" class="mdui-ripple">TA的follower</a>
+            <a href="#following" class="mdui-ripple">TA正在follow</a>
+        </div>
+        <div id="intro" class="mdui-p-a-2">
+                <div class="mdui-card-content">
+                    <div id="test-editormd-view" class="mdui-typo">
+                        <pre id="test-editormd-markdown-doc" class="nohighlight"><!-- introduction --></pre>
+                    </div>
+            </div>
+        </div>
+        <div id="ex" class="mdui-p-a-2">
+            <div class="mdui-typo">
+                <h4>通过的题目</h4>
+                <!-- aced -->
+                <br>
+                <h4>尝试过的题目</h4>
+                <!-- tried -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div id="act" class="mdui-p-a-2">
+            <div class="mdui-typo">
+                123
+            </div>
+    </div> -->
+    <div id="follower" class="mdui-p-a-2">
+        <div class="mdui-typo">
+            <!-- followers -->
+        </div>
+    </div>
+    <div id="following" class="mdui-p-a-2">
+        <div class="mdui-typo">
+            <!-- followings -->
+        </div>
+    </div>
+
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <a class="mdui-btn mdui-ripple" href="/settings" 我是傻逼>个人设置</a>
+        <a class="mdui-btn mdui-ripple" href="/logout" class="mdui-text-color-red" 我是傻逼>退出登录</a>
+        <button class="mdui-btn mdui-btn-icon mdui-float-right">
+            <i class="mdui-icon material-icons">expand_more</i>
+        </button>
+    </div>
+
+</div>
+<script src="/static/highlightjs/highlight.min.js"></script>
+<link href="/static/highlightjs/styles/vs2015.min.css" rel="stylesheet">
+<script src="/static/highlightjs/languages/cpp.min.js"></script>
+<script src="/static/highlightjs/languages/c.min.js"></script>
+<script src="/static/highlightjs/languages/python.min.js"></script>
+<script src="/static/highlightjs/languages/markdown.min.js"></script>
+<!-- <div id="temp-info-md-copy" class="mdui-invisible"></div> -->
+<script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js"></script>
+<script src="/static/markdowntool.js"></script>
+<script>
+    $(function() {
+        var md=document.getElementById("test-editormd-markdown-doc").innerText;
+        markdown_render_dom(document.getElementById("test-editormd-view"), md);
+    }); 
+</script>
+<script>
+    function follow() {
+        var url = window.location.href;
+        var index = url.lastIndexOf("\/");
+        userid = url.substring(index + 1, url.length).split('#')[0];
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+        httpRequest.open('GET', '/follow/' + userid, true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+        httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+        /**
+         * 获取数据后的处理程序
+         */
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var json = httpRequest.responseText;//获取到json字符串，还需解析
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'succeed') {
+                    mdui.snackbar("关注成功！");
+                    location.reload()
+                } else {
+                    mdui.snackbar("关注失败！");
+                }
+            }
+        };
+    }
+</script>

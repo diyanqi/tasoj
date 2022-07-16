@@ -1,0 +1,210 @@
+<br>
+<style>
+    a {
+        color: #ff4081;
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        text-decoration: none;
+        vertical-align: top;
+        outline: 0;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .mdui-typo a::before {
+        position: absolute;
+        top: auto;
+        bottom: 1px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #ff4081;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+        content: ' ';
+    }
+</style>
+<div class="mdui-row">
+    <div class="mdui-card mdui-hoverable mdui-col-sm-8 mdui-col-xs-12">
+        <div class="mdui-card-primary">
+            <div>
+                <div class="mdui-row-xs-1 mdui-row-sm-2">
+                    <div class="mdui-col">
+                        <div class="mdui-card-primary-title" style="float:left;">题目列表 <a href="/random/problem" class="mdui-btn mdui-color-theme">随机跳题</a></div>
+                    </div>
+                    <div class="mdui-col">
+                        <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                            <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i
+                                    class="mdui-icon material-icons">search</i></button>
+                            <input id="q" onkeydown="return disableTextSubmit(event)" class="mdui-textfield-input"
+                                type="text" placeholder="搜索题目" style="cursor:text;">
+                            <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i
+                                    class="mdui-icon material-icons">close</i></button>
+                        </div>
+                        <script>
+                            function disableTextSubmit(e) {
+                                if (e.keyCode == 13) {
+                                    location.href = "/search?q=" + document.getElementById("q").value + "#problem";
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-table-fluid mdui-shadow-0">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>状态</th>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>标签</th>
+                        <th class="mdui-table-col-numeric">通过率</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr onclick="window.location='/problem/1000'" style="cursor:pointer;">
+                    <td></td>
+                    <td>1000</td>
+                    <td>A+B问题</td>
+                    <td><div class="mdui-chip">
+                        <span class="mdui-chip-title">入门</span>
+                      </div></td>
+                    <td>100%</td>
+                </tr> -->
+                    <!-- lists -->
+                </tbody>
+            </table>
+        </div>
+        <div style="float:right;">
+            <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="back();">
+                <i class="mdui-icon material-icons">arrow_back</i>
+            </button>
+            <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="forward();">
+                <i class="mdui-icon material-icons">arrow_forward</i>
+            </button>
+        </div>
+        <br>
+    </div>
+    <!-- <br> -->
+    <div class="mdui-col-sm-3 mdui-col-xs-12 mdui-col-offset-sm-1">
+        <div class="mdui-card mdui-hoverable">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-subtitle">标签分类</div>
+            </div>
+            <div class="mdui-card-content mdui-typo">
+                <!-- tags -->
+            </div>
+        </div><br>
+        <div class="mdui-card mdui-hoverable">
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-subtitle">快速跳转</div>
+            </div>
+            <div class="mdui-card-content">
+                <div class="mdui-typo">
+                <a href="/problem/list?page=1">P1000~P1049</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=2">P1050~P1099</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=3">P1100~P1149</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=4">P1150~P1199</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=5">P1200~P1249</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=6">P1250~P1299</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=7">P1300~P1349</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=8">P1350~P1399</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=9">P1400~P1449</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=10">P1450~P1499</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=11">P1500~P1549</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=12">P1550~P1599</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=13">P1600~P1649</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=14">P1650~P1699</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=15">P1700~P1749</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=16">P1750~P1799</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=17">P1800~P1849</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=18">P1850~P1899</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=19">P1900~P1949</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=20">P1950~P1999</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=21">P2000~P2049</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=22">P2050~P2099</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=23">P2100~P2149</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=24">P2150~P2199</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=25">P2200~P2249</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=26">P2250~P2299</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=27">P2300~P2349</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=28">P2350~P2399</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=29">P2400~P2449</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=30">P2450~P2499</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=31">P2500~P2549</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=32">P2550~P2599</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=33">P2600~P2649</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=34">P2650~P2699</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=35">P2700~P2749</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=36">P2750~P2799</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=37">P2800~P2849</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=38">P2850~P2899</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=39">P2900~P2949</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=40">P2950~P2999</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=41">P3000~P3049</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=42">P3050~P3099</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=43">P3100~P3149</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=44">P3150~P3199</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=45">P3200~P3249</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=46">P3250~P3299</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=47">P3300~P3349</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=48">P3350~P3399</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=49">P3400~P3449</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=50">P3450~P3499</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=51">P3500~P3549</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=52">P3550~P3599</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=53">P3600~P3649</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=54">P3650~P3699</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=55">P3700~P3749</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=56">P3750~P3799</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=57">P3800~P3849</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=58">P3850~P3899</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=59">P3900~P3949</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=60">P3950~P3999</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=61">P4000~P4049</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=62">P4050~P4099</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=63">P4100~P4149</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=64">P4150~P4199</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=65">P4200~P4249</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=66">P4250~P4299</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=67">P4300~P4349</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/problem/list?page=68">P4350~P4399</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+    function back() {
+        if (getQueryVariable("page") == false) {
+            mdui.snackbar("已经是第一页了");
+            return;
+        }
+        if (getQueryVariable("page") != "1")
+            location.href = "/problem/list?page=" + String(Number(getQueryVariable("page")) - 1);
+        else
+            mdui.snackbar("已经是第一页了");
+    }
+    function forward() {
+        if (getQueryVariable("page") == false)
+            location.href = "/problem/list?page=2";
+        else
+            location.href = "/problem/list?page=" + String(Number(getQueryVariable("page")) + 1);
+    }
+</script>

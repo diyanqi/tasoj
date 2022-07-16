@@ -1,0 +1,1 @@
+{"status": "Wrong Answer", "problem_id": 1000, "language": "nodejs", "username": "toby_lai@126.com", "code": "console.log(\"Hello world!\")", "msg": "", "testpoints": [{"testpoint": 1, "status": "Wrong Answer", "msg": "", "time": 328326313, "memory": 30568448}], "score": 0, "scorerate": "0%"}

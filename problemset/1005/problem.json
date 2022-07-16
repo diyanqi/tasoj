@@ -1,0 +1,93 @@
+{
+    "display_id": "a104",
+    "title": "\u7535\u8377\u91cf",
+    "description": {
+        "format": "html",
+        "value": "<p>\u6709\u4e09\u4e2a\u5927\u5c0f\u548c\u6750\u8d28\u5b8c\u5168\u76f8\u540c\u4e14\u76f8\u8ddd\u8f83\u8fdc\u7684\u91d1\u5c5eA\u3001B\u3001C\uff0c\u5df2\u77e5A\u548cB\u7684\u7535\u8377\u91cf\uff0c\u8ba9\u4e0d\u5e26\u7535\u8377\u7684C\u5148\u4e0eA\u5145\u5206\u63a5\u89e6\u540e\u79fb\u5f00\uff0c\u7136\u540e\u518d\u4e0eB\u5145\u5206\u63a5\u89e6\u540e\u79fb\u5f00\uff0c\u6b64\u65f6C\u643a\u5e26\u7684\u7535\u8377\u91cf\u662f\u591a\u5c11\uff1f</p>"
+    },
+    "tags": [
+        "\u7f16\u7a0b\u57fa\u7840"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u884c\uff0c\u4e24\u4e2a\u5b9e\u6570A\u4e0eB</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e2a\u5b9e\u6570\uff08\u4fdd\u75593\u4f4d\u5c0f\u6570\uff09</p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "10 -10",
+            "output": "-2.500"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "\u300aPython\u7f16\u7a0b\u57fa\u7840\u548c\u6848\u4f8b\u96c6\u9526\u300b\uff08\u4e2d\u5b66\u7248\uff09\uff0cP43\u4f8b2-4",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "a,b = map(float,input().split())\nprint('{:.3f}'.format(a/4+b/2))"
+        }
+    ]
+}

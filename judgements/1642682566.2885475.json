@@ -1,0 +1,1 @@
+{"status": "Accepted", "problem_id": 1000, "language": "cpp", "username": "diyanqi@foxmail.com", "code": "#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    cout<<\"Hello, world!\";\n    return 0;\n}", "msg": "", "testpoints": [{"testpoint": 1, "status": "Accepted", "msg": "", "time": 4093185, "memory": 5283840}], "score": 100, "scorerate": "100%"}

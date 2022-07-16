@@ -1,0 +1,83 @@
+<br>
+<div class="mdui-card" style="float: left;width: 19%;">
+
+    <!-- 卡片的标题和副标题 -->
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">联系人列表</div>
+        <div class="mdui-card-primary-subtitle">常用联系人</div>
+    </div>
+
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-content">我太难了，先不做了（（（</div>
+
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple">新建对话</button>
+        <button class="mdui-btn mdui-btn-icon mdui-float-right">
+            <i class="mdui-icon material-icons">expand_more</i>
+        </button>
+    </div>
+    <style>
+        .duifang_chat_box {
+            position: relative;
+            display: flex;
+            margin: 20px;
+        }
+
+        .duifang_chat_box::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            border: 6px solid #ffffff;
+            top: 10px;
+            left: -12px;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        .duifang_chat_html {
+            background-color: #ffffff;
+            max-width: 400px;
+            padding: 10px;
+            border-radius: 5px;
+            color: #232323;
+        }
+    </style>
+    <style>
+        .bubble {
+            width: 300px;
+            height: 100px;
+            border-radius: 10px;
+            background-color: aquamarine;
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .bubble::before {
+            position: absolute;
+            top: 40px;
+            left: -20px;
+            content: '';
+            width: 0;
+            height: 0;
+            border-right: 10px solid aquamarine;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid transparent;
+            border-top: 10px solid transparent;
+        }
+    </style>
+</div>
+
+<div class="mdui-card" style="float: right;width: 79%;">
+
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-content">
+        <center>
+            <!-- 对方名字 -->
+        </center>
+        <hr>
+        <div class="bubble">太惨了</div>
+    </div>
+
+</div>

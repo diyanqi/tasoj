@@ -1,0 +1,1 @@
+{"email": "diyanqi@qq.com", "title": "P1000 C++ \u4ee3\u7801\u793a\u4f8b", "question": "```cpp\n#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n\tcout<<\"Hello, world!\";\n\treturn 0;\n}\n```", "time": 1643446169.157466, "the_same": 1, "samers": ["diyanqi@qq.com"], "answers": [], "pid": "1000"}

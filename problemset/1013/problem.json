@@ -1,0 +1,94 @@
+{
+    "display_id": "a114",
+    "title": "\u8ba1\u7b97\u6837\u672c\u6807\u51c6\u5dee",
+    "description": {
+        "format": "html",
+        "value": "<p>\u5047\u8bbe\u6837\u672c\u6570\u636e\u4e3a $x_1,x_2,...,x_n$\u3002</p><p>\u6837\u672c\u5e73\u5747\u503c\uff1a</p><p><span style=\"color: rgb(36, 39, 41);\">$\\bar{x}=\\frac{x_1+x_2+...+x_n}{n}$</span></p><p>\u6837\u672c\u6807\u51c6\u5dee\uff1a</p><p>$s=\\sqrt{\\frac{\\sum_1^{n}(x_{i}-\\overline{x})^{2}}{n-1}}$</p>"
+    },
+    "tags": [
+        "\u5e8f\u5217\u7ed3\u6784",
+        "\u5217\u8868"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e32\u6574\u6570</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e2a\u5b9e\u6570\uff08\u4fdd\u75592\u4f4d\u5c0f\u6570\uff09</p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "3 7 23 21 8 10",
+            "output": "8.10"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "\u300aPython\u7f16\u7a0b\u57fa\u7840\u4e0e\u6848\u4f8b\u96c6\u9526\uff08\u4e2d\u5b66\u7248\uff09\u300bP87\u4f8b5-4\u6539\u7f16",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "def f(lst):\n    ln=len(lst)\n    avg = sum(lst)/ln\n    s = [(xi-avg)**2 for xi in lst]\n    s = (sum(s)/(ln-1))**0.5\n    return s\nlst = list(map(int,input().split()))\nprint('{:.2f}'.format(f(lst)))"
+        }
+    ]
+}

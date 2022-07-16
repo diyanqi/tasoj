@@ -1,0 +1,574 @@
+<br>
+<div class="mdui-tab" mdui-tab>
+    <a href="#profile" class="mdui-ripple">个人信息</a>
+    <a href="#colorset" class="mdui-ripple">主题</a>
+    <a href="#custom" class="mdui-ripple">个性化</a>
+    <a href="#security" class="mdui-ripple">安全设置</a>
+</div>
+<div id="custom" class="mdui-p-a-2">
+    <small>*提示：当前设置只会在当前浏览器中保存！</small>
+    <h3>预置代码</h3>
+    <small>您将会在在线IDE与提交题目代码框中预置该代码</small>
+    <hr>
+    <div style="height:350px;" id="editorDiv" class="mdui-container-fluid"></div>
+    <button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="saveprecode();">保存</button>
+    <br>
+
+    <h3>代码编辑器字号</h3>
+    <small>见上方代码框预览，自动保存；爱护双眼，调大字号！</small>
+    <label class="mdui-slider mdui-slider-discrete">
+        <input id="sizee" type="range" step="1" min="10" max="35" onpropertychange="OnPropChanged(event)"
+            oninput="OnInput(event)" />
+    </label>
+    <h3>代码框样式</h3>
+    <small>见上方代码框预览，自动保存</small>
+    <select class="mdui-select" mdui-select>
+        <option value="ambiance">ambiance</option>
+        <option value="chaos">chaos</option>
+        <option value="chrome">chrome</option>
+        <option value="clouds_midnight">clouds_midnight</option>
+        <option value="clouds">clouds</option>
+        <option value="cobalt">cobalt</option>
+        <option value="crimson_editor">crimson_editor</option>
+        <option value="dawn">dawn</option>
+        <option value="dracula">dracula</option>
+        <option value="dreamweaver">dreamweaver</option>
+        <option value="eclipse">eclipse</option>
+        <option value="github">github</option>
+        <option value="gob">gob</option>
+        <option value="gruvbox">gruvbox</option>
+        <option value="idle_fingers">idle_fingers</option>
+        <option value="ambiance">ambiance</option>
+        <option value="iplastic">iplastic</option>
+        <option value="katzenmilch">katzenmilch</option>
+        <option value="kr_theme">kr_theme</option>
+        <option value="kuroir">kuroir</option>
+        <option value="merbivore_soft">merbivore_soft</option>
+        <option value="merbivore">merbivore</option>
+        <option value="mono_industrial">mono_industrial</option>
+        <option value="monokai">monokai</option>
+        <option value="nord_dark">nord_dark</option>
+        <option value="pastel_on_dark">pastel_on_dark</option>
+        <option value="solarized_dark">solarized_dark</option>
+        <option value="solarized_light">solarized_light</option>
+        <option value="sqlserver">sqlserver</option>
+        <option value="terminal">terminal</option>
+        <option value="textmate">textmate</option>
+        <option value="tomorrow_night_blue">tomorrow_night_blue</option>
+        <option value="tomorrow_night_bright">tomorrow_night_bright</option>
+        <option value="tomorrow_night_eighties">tomorrow_night_eighties</option>
+        <option value="tomorrow_night">tomorrow_night</option>
+        <option value="tomorrow">tomorrow</option>
+        <option value="twilight">twilight</option>
+        <option value="vibrant_ink">vibrant_ink</option>
+        <option value="xcode">xcode</option>
+    </select>
+    <!-- <br><Br><Br>
+    <h3>默认代码语言</h3>
+    <hr>
+    <select class="mdui-select" mdui-select>
+        <option value="cpp">简体中文</option>
+    </select> -->
+    <br><br><br>
+    <h3>默认语言</h3>
+    <hr>
+    <select class="mdui-select" mdui-select>
+        <option value="sim_cn">简体中文</option>
+    </select>
+</div>
+<script>
+    function OnInput(event) {
+        console.log(event.target.value);
+        window.localStorage.setItem("editorsize",(event.target.value));
+        document.getElementById('editorDiv').style.fontSize = String(event.target.value)+'px';
+    }
+    function OnPropChanged(event) {
+        if (event.propertyName.toLowerCase() == "value") {
+            console.log(event.srcElement.value);
+            window.localStorage.setItem("editorsize",(event.srcElement.value));
+            document.getElementById('editorDiv').style.fontSize = String(event.srcElement.value)+'px';
+        }
+    }
+    function saveprecode() {
+        window.localStorage.setItem("precode", ieditor.getValue());
+        mdui.snackbar("保存成功！");
+    }
+</script>
+<script src="/ace/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/ace/src-noconflict/ext-language_tools.js" type="text/javascript"></script>
+<script>
+    var ieditor = ace.edit("editorDiv");
+    //设置编辑器样式，对应theme-*.js文件
+    ieditor.setTheme("ace/theme/twilight");
+    //设置代码语言，对应mode-*.js文件
+    ieditor.session.setMode("ace/mode/c_cpp");
+    //设置打印线是否显示
+    ieditor.setShowPrintMargin(false);
+    //设置是否只读
+    ieditor.setReadOnly(false);
+    document.getElementById('editorDiv').style.fontSize = '15px';
+    //以下部分是设置输入代码提示的，如果不需要可以不用引用ext-language_tools.js
+    ace.require("ace/ext/language_tools");
+    ieditor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+</script>
+<script>
+    ieditor.setValue(window.localStorage.getItem("precode"));
+    document.getElementById('editorDiv').style.fontSize = String(window.localStorage.getItem("editorsize"))+'px';
+    ieditor.setTheme("ace/theme/"+window.localStorage.getItem("codetheme"));
+</script>
+<script>
+    document.getElementById("sizee").value=window.localStorage.getItem("editorsize");
+    var option = document.getElementsByTagName("option");
+    for (i = 0; i < option.length; i++) {
+        if(option[i].value==window.localStorage.getItem("codetheme"))
+            option[i].setAttribute("selected","selected");
+    }
+</script>
+<div id="colorset" class="mdui-p-a-2">
+    <small>*提示：当前配色只会在当前浏览器中保存！</small>
+    <p class="mdui-typo-title">主题色</p>
+    <div class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3">
+        <div class="mdui-col">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-layout" value="auto" checked="">
+                <i class="mdui-radio-icon"></i>
+                Auto
+            </label>
+        </div>
+        <div class="mdui-col">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-layout" value="light">
+                <i class="mdui-radio-icon"></i>
+                Light
+            </label>
+        </div>
+        <div class="mdui-col">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-layout" value="dark">
+                <i class="mdui-radio-icon"></i>
+                Dark
+            </label>
+        </div>
+    </div>
+
+    <p class="mdui-typo-title mdui-text-color-theme">主色</p>
+    <form class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3">
+        <div class="mdui-col mdui-text-color-amber">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="amber">
+                <i class="mdui-radio-icon"></i>
+                Amber
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-blue">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="blue">
+                <i class="mdui-radio-icon"></i>
+                Blue
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-blue-grey">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="blue-grey">
+                <i class="mdui-radio-icon"></i>
+                Blue Grey
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-brown">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="brown">
+                <i class="mdui-radio-icon"></i>
+                Brown
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-cyan">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="cyan">
+                <i class="mdui-radio-icon"></i>
+                Cyan
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-deep-orange">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="deep-orange">
+                <i class="mdui-radio-icon"></i>
+                Deep Orange
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-deep-purple">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="deep-purple">
+                <i class="mdui-radio-icon"></i>
+                Deep Purple
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-green">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="green">
+                <i class="mdui-radio-icon"></i>
+                Green
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-grey">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="grey">
+                <i class="mdui-radio-icon"></i>
+                Grey
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-indigo">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="indigo" checked="">
+                <i class="mdui-radio-icon"></i>
+                Indigo
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-light-blue">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="light-blue">
+                <i class="mdui-radio-icon"></i>
+                Light Blue
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-light-green">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="light-green">
+                <i class="mdui-radio-icon"></i>
+                Light Green
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-lime">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="lime">
+                <i class="mdui-radio-icon"></i>
+                Lime
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-orange">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="orange">
+                <i class="mdui-radio-icon"></i>
+                Orange
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-pink">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="pink">
+                <i class="mdui-radio-icon"></i>
+                Pink
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-purple">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="purple">
+                <i class="mdui-radio-icon"></i>
+                Purple
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-red">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="red">
+                <i class="mdui-radio-icon"></i>
+                Red
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-teal">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="teal">
+                <i class="mdui-radio-icon"></i>
+                Teal
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-yellow">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-primary" value="yellow">
+                <i class="mdui-radio-icon"></i>
+                Yellow
+            </label>
+        </div>
+    </form>
+
+    <p class="mdui-typo-title mdui-text-color-theme-accent">强调色</p>
+    <form class="mdui-row-xs-1 mdui-row-sm-2 mdui-row-md-3">
+        <div class="mdui-col mdui-text-color-amber">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="amber">
+                <i class="mdui-radio-icon"></i>
+                Amber
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-blue">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="blue">
+                <i class="mdui-radio-icon"></i>
+                Blue
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-cyan">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="cyan">
+                <i class="mdui-radio-icon"></i>
+                Cyan
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-deep-orange">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="deep-orange">
+                <i class="mdui-radio-icon"></i>
+                Deep Orange
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-deep-purple">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="deep-purple">
+                <i class="mdui-radio-icon"></i>
+                Deep Purple
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-green">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="green">
+                <i class="mdui-radio-icon"></i>
+                Green
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-indigo">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="indigo">
+                <i class="mdui-radio-icon"></i>
+                Indigo
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-light-blue">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="light-blue">
+                <i class="mdui-radio-icon"></i>
+                Light Blue
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-light-green">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="light-green">
+                <i class="mdui-radio-icon"></i>
+                Light Green
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-lime">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="lime">
+                <i class="mdui-radio-icon"></i>
+                Lime
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-orange">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="orange">
+                <i class="mdui-radio-icon"></i>
+                Orange
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-pink">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="pink" checked="">
+                <i class="mdui-radio-icon"></i>
+                Pink
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-purple">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="purple">
+                <i class="mdui-radio-icon"></i>
+                Purple
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-red">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="red">
+                <i class="mdui-radio-icon"></i>
+                Red
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-teal">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="teal">
+                <i class="mdui-radio-icon"></i>
+                Teal
+            </label>
+        </div>
+        <div class="mdui-col mdui-text-color-yellow">
+            <label class="mdui-radio mdui-m-b-1">
+                <input type="radio" name="theme-accent" value="yellow">
+                <i class="mdui-radio-icon"></i>
+                Yellow
+            </label>
+        </div>
+    </form>
+</div>
+<div id="profile" class="mdui-p-a-2">
+    <div class="mdui-textfield mdui-textfield-floating-label">
+        <h4 class="mdui-typo-headline">主页介绍（支持MarkDown）</h4>
+        <div class="mdui-divider"></div>
+        <br>
+        <div class="mdui-col-xs-12">
+            <div id="test-editor">
+                <textarea id="inp-content" style="display:none;">(md)</textarea>
+            </div>
+            <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
+                onclick="save_profilemd();">保存</button>
+        </div>
+    </div>
+    <br><br><br>
+
+
+    <!-- 头像设置 -->
+    <h4 class="mdui-typo-headline">头像设置</h4>
+    <img src="/users_byid/(username)/avatar.png" id="a1" height="200" width="200" /><br>
+    <script>document.getElementById("a1").src += '?t=' + (+new Date());</script>
+    <form action="/getImg/" method="post" enctype="multipart/form-data">
+        <div class="mdui-typo-body-1">请上传图片：</div>
+        <input type="file" name="image"><br>
+        <input type="submit" value="提交" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent">
+    </form>
+    <br><br><br>
+
+    <!-- 一句话简介 -->
+    <div class="mdui-textfield mdui-textfield-floating-label">
+        <h4 class="mdui-typo-headline">一句话简介</h4>
+        <div class="mdui-divider"></div>
+        <br>
+        <input class="mdui-textfield-input" type="text" id="oneword" />
+        <div class="mdui-textfield-helper">一句话简介，完成后别忘了按保存！</div>
+    </div>
+    <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="save_one_word();">保存</button>
+    <br><br><br>
+</div>
+<script>
+    $(function () {
+        var editor = editormd("test-editor", {
+            height: '350px',
+            syncScrolling: "single",
+            emoji: true,
+            //启动本地图片上传功能
+            imageUpload: true,
+            watch: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+            path: "/static/editor.md/lib/",
+            imageUploadURL: "/upload", //文件提交请求路径
+            saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+            previewTheme: "dark",//预览主题样式 黑色
+        });
+    })
+</script>
+<script>
+    function save_profilemd() {
+        obj = { 'msg': document.getElementById("inp-content").innerText };
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+        httpRequest.open('POST', '/user/save_profilemd', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+        httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                var json = httpRequest.responseText;//获取到服务端返回的数据
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'failed') {
+                    mdui.snackbar("保存失败……");
+                } else {
+                    mdui.snackbar({
+                        message: '保存成功',
+                        buttonText: '没毛病',
+                        onClick: function () {
+                            location.reload();
+                        },
+                        onButtonClick: function () {
+                            location.reload();
+                        },
+                        onClose: function () {
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        };
+    }
+</script>
+<script>
+    function save_one_word() {
+        obj = { 'msg': document.getElementById("oneword").value };
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+        httpRequest.open('POST', '/user/save_oneword', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+        httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                var json = httpRequest.responseText;//获取到服务端返回的数据
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'failed') {
+                    mdui.snackbar("保存失败……是不是太长了点……");
+                } else {
+                    mdui.snackbar({
+                        message: '保存成功',
+                        buttonText: '没毛病',
+                        onClick: function () {
+                            location.reload();
+                        },
+                        onButtonClick: function () {
+                            location.reload();
+                        },
+                        onClose: function () {
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        };
+    }
+</script>
+<script>
+    // if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+    //     window.applicationCache.update();
+    // }
+    document.getElementById("oneword").value = `(oneword_text)`;
+</script>
+<script>
+    document.addEventListener('click', e => {
+        setTimeout(function () {
+            var radio = document.getElementsByTagName("input");
+            for (i = 0; i < radio.length; i++) {
+                if (radio[i].checked) {
+                    console.log(radio[i]);
+                    c = document.getElementsByTagName("body")[0].className.split(" ");
+                    for (j in c) {
+                        if (c[j].indexOf(radio[i].name) != -1) {
+                            document.getElementsByTagName("body")[0].classList.remove(c[j]);
+                        }
+                    }
+                    document.getElementsByTagName("body")[0].classList.add("mdui-" + radio[i].name + "-" + radio[i].value);
+                    window.localStorage.setItem(radio[i].name, radio[i].value);
+                }
+            }
+        }, 50);
+    })
+    document.addEventListener('close.mdui.select',e=>{
+        console.log(e._detail.inst.selectedValue);
+        ieditor.setTheme("ace/theme/"+e._detail.inst.selectedValue);
+        window.localStorage.setItem("codetheme",e._detail.inst.selectedValue);
+    })
+</script>
+<script>
+    var radio = document.getElementsByTagName("input");
+    for (i = 0; i < radio.length; i++) {
+        if (radio[i].checked) {
+            if (window.localStorage.getItem(radio[i].name) != radio[i].value) {
+                radio[i].removeAttribute("checked");
+            }
+        } else {
+            if (window.localStorage.getItem(radio[i].name) == radio[i].value) {
+                radio[i].setAttribute("checked", "checked");
+            }
+        }
+    }
+</script>

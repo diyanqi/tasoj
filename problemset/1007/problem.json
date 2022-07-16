@@ -1,0 +1,97 @@
+{
+    "display_id": "a106",
+    "title": "\u51fa\u79df\u8f66\u8ba1\u8d39",
+    "description": {
+        "format": "html",
+        "value": "<p>\u5047\u8bbe\u67d0\u57ce\u5e02\u7684\u51fa\u79df\u8f66\u8ba1\u8d39\u65b9\u5f0f\u662f\uff1a<br />3km\u4ee5\u5185\uff08\u542b3km\uff09\u8d77\u6b65\u4ef710\u5143\uff1b<br />3~7km\uff08\u542b7km\uff09\u63091.6\u5143/km\u8ba1\u8d39\uff0c\u4e0d\u8db31km\u63091km\u8ba1\u8d39\uff1b<br />7km\u4e4b\u540e\u63092.4\u5143/km\u8ba1\u8d39,\u4e0d\u8db31km\u63091km\u8ba1\u8d39\u3002</p><p>\u7ed9\u51fa\u91cc\u7a0bd,\u6309\u4e0a\u8ff0\u89c4\u5219\u8f93\u51fa\u8ba1\u8d39fee\uff08\u5143\uff09.</p>"
+    },
+    "tags": [
+        "\u9009\u62e9\u7ed3\u6784"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e2a\u5b9e\u6570d</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p>\u4e00\u4e2a\u5b9e\u6570fee\uff08\u4fdd\u75592\u4f4d\u5c0f\u6570\uff09</p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": "<p>\u6ce8\u610f\u5411\u4e0a\u53d6\u6574\u8981\u7528math.ceil()\u51fd\u6570\uff1a</p><p>\u5982\uff1a</p><p>math.ceil(2.8)\u7ed3\u679c\u4e3a3</p><p>math.ceil(3.0)\u7ed3\u679c\u4e3a3</p>"
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "3",
+            "output": "10.00"
+        },
+        {
+            "input": "15.0",
+            "output": "35.60"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "\u300aPython\u57fa\u7840\u7f16\u7a0b\u4e0e\u6848\u4f8b\u96c6\u9526\uff08\u4e2d\u5b66\u7248\uff09\u300b\uff0cP60\u4f8b3-7",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "import math\n\ndef f(d):\n    d = math.ceil(d)\n    if d<=3:\n        fee=10\n    elif d<=7:\n        fee = 10+(d-3)*1.6\n    else:\n        fee = 10+4*1.6+(d-7)*2.4\n    return fee\nprint('{:.2f}'.format(f(float(input()))))"
+        }
+    ]
+}

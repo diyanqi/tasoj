@@ -1,0 +1,5 @@
+4
+VBox ox
+Widget idge(50,60)
+ox.pack(idge)
+ox.set_border(5)

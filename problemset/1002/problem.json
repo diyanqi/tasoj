@@ -1,0 +1,94 @@
+{
+    "display_id": "a101",
+    "title": "自然数过滤",
+    "description": {
+        "format": "html",
+        "value": "<p>输入若干自然数，要求输出只包含原来自然数中各位数字之和等于9的自然数。</p>"
+    },
+    "tags": [
+        "filter函数",
+        "列表"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>一行，若干自然数，数之间用空格分开。</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p>一行，若干自然数</p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "123 126 54 111111111 27 18 9 11",
+            "output": "126 54 111111111 27 18 9"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "Python编程基础与案例集锦（中学版）,P41例2-1",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "lst = list(map(int,input().split()))\nlst = filter(lambda num:sum(map(int,str(num)))==9,lst)\nprint(*lst)"
+        }
+    ]
+}

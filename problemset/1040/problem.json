@@ -1,0 +1,143 @@
+{
+    "title": "\u79d8\u5bc6\u88ad\u51fb",
+    "type": "problem",
+    "description": {
+        "format": "html",
+        "value": "<img src=\"/image/20220128085104.png\" alt=\"\" /><img src=\"/image/20220128085121.png\" alt=\"\" /><img src=\"/image/20220128085137.png\" alt=\"\" />"
+    },
+    "tags": [
+        "NOI\u4e5d\u8fde2018"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": ""
+    },
+    "output_description": {
+        "format": "html",
+        "value": ""
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "test7.in",
+            "output_name": "test7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test2.in",
+            "output_name": "test2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test9.in",
+            "output_name": "test9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test0.in",
+            "output_name": "test0.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test13.in",
+            "output_name": "test13.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test12.in",
+            "output_name": "test12.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test19.in",
+            "output_name": "test19.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test16.in",
+            "output_name": "test16.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test18.in",
+            "output_name": "test18.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test1.in",
+            "output_name": "test1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test3.in",
+            "output_name": "test3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test5.in",
+            "output_name": "test5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test14.in",
+            "output_name": "test14.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test17.in",
+            "output_name": "test17.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test6.in",
+            "output_name": "test6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test15.in",
+            "output_name": "test15.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test11.in",
+            "output_name": "test11.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test8.in",
+            "output_name": "test8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test4.in",
+            "output_name": "test4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "test10.in",
+            "output_name": "test10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 10000,
+    "memory_limit": 1024,
+    "samples": [
+        {
+            "input": "",
+            "output": ""
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "print('Hello, world!')"
+        }
+    ]
+}

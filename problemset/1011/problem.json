@@ -1,0 +1,93 @@
+{
+    "display_id": "a111",
+    "title": "\u6c42\u5206\u5f0f\u548c",
+    "description": {
+        "format": "html",
+        "value": "<p>\u8ba1\u7b97</p><p>$\\sum_{i=2}^{n}$<span style=\"color: rgb(82, 82, 82);\">$\\frac{1}{(i-1)*i}$</span></p><p>\u5373n-1\u9879\u548c\u3002</p>"
+    },
+    "tags": [
+        "\u5faa\u73af\u7ed3\u6784"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "<p>\u6574\u6570n</p>"
+    },
+    "output_description": {
+        "format": "html",
+        "value": "<p><b>\u4e00\u4e2a\u5b9e\u6570\uff08\u4fdd\u75596\u4f4d\u5c0f\u6570\uff09</b></p>"
+    },
+    "test_case_score": [
+        {
+            "score": 10,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        },
+        {
+            "score": 10,
+            "input_name": "2.in",
+            "output_name": "2.out"
+        },
+        {
+            "score": 10,
+            "input_name": "3.in",
+            "output_name": "3.out"
+        },
+        {
+            "score": 10,
+            "input_name": "4.in",
+            "output_name": "4.out"
+        },
+        {
+            "score": 10,
+            "input_name": "5.in",
+            "output_name": "5.out"
+        },
+        {
+            "score": 10,
+            "input_name": "6.in",
+            "output_name": "6.out"
+        },
+        {
+            "score": 10,
+            "input_name": "7.in",
+            "output_name": "7.out"
+        },
+        {
+            "score": 10,
+            "input_name": "8.in",
+            "output_name": "8.out"
+        },
+        {
+            "score": 10,
+            "input_name": "9.in",
+            "output_name": "9.out"
+        },
+        {
+            "score": 10,
+            "input_name": "10.in",
+            "output_name": "10.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "100",
+            "output": "0.990000"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "\u300aPython\u7f16\u7a0b\u57fa\u7840\u4e0e\u6848\u4f8b\u96c6\u9526\uff08\u4e2d\u5b66\u7248\uff09\u300bP74\u4f8b4-12",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "n = int(input())\nr = 0\nfor i in range(1,n):\n  r = r + 1/(i*(i+1))\nprint('{:.6f}'.format(r))"
+        }
+    ]
+}

@@ -1,0 +1,95 @@
+<br>
+<div class="mdui-card mdui-hoverable">
+    <!--  style="float: left;width:75%;" -->
+    <div class="mdui-card-primary">
+        <div>
+            <div class="mdui-row-xs-1 mdui-row-sm-2">
+                <div class="mdui-col">
+                    <div class="mdui-card-primary-title" style="float:left;">测评列表</div>
+                </div>
+                <div class="mdui-col">
+                    <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                        <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i
+                                class="mdui-icon material-icons">search</i></button>
+                        <input id="q" onkeydown="return disableTextSubmit(event)" class="mdui-textfield-input" type="text" placeholder="搜索" style="cursor:text;">
+                        <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i
+                                class="mdui-icon material-icons">close</i></button>
+                    </div>
+                    <script>
+                        function disableTextSubmit(e) {
+                            if (e.keyCode == 13) {
+                                location.href="/search?q="+document.getElementById("q").value+"#judgement";
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mdui-table-fluid mdui-shadow-0">
+        <table class="mdui-table mdui-table-hoverable">
+            <thead>
+                <tr>
+                    <th>状态</th>
+                    <th>#</th>
+                    <th>题目</th>
+                    <th>语言</th>
+                    <th>作者</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr onclick="window.location='/problem/1000'" style="cursor:pointer;">
+                    <td></td>
+                    <td>1000</td>
+                    <td>A+B问题</td>
+                    <td><div class="mdui-chip">
+                        <span class="mdui-chip-title">入门</span>
+                      </div></td>
+                    <td>100%</td>
+                </tr> -->
+                <!-- lists -->
+            </tbody>
+        </table>
+    </div>
+    <div style="float:right;"><button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="back();">
+            <i class="mdui-icon material-icons">arrow_back</i>
+        </button><button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="forward();">
+            <i class="mdui-icon material-icons">arrow_forward</i>
+        </button></div>
+</div>
+<!-- <div class="mdui-card mdui-hoverable" style="float: right;width:23%;">
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-subtitle">标签分类</div>
+    </div>
+    <div class="mdui-card-content">
+        <\!-- benben -->
+    <!--div-->
+<!--/div> -->
+<br><br><br>
+<script>
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+    function back() {
+        if (getQueryVariable("page") == false){
+            mdui.snackbar("已经是第一页了");
+            return;
+        } 
+        if (getQueryVariable("page") != "1")
+            location.href = "/judgements/list?page=" + String(Number(getQueryVariable("page")) - 1);
+        else
+            mdui.snackbar("已经是第一页了");
+    }
+    function forward() {
+        if (getQueryVariable("page") == false)
+            location.href = "/judgements/list?page=2";
+        else
+            location.href = "/judgements/list?page=" + String(Number(getQueryVariable("page")) + 1);
+    }
+</script>

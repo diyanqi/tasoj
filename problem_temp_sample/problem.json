@@ -1,0 +1,49 @@
+{
+    "title": "新建题目-未命名",
+    "type": "disabled",
+    "description": {
+        "format": "markdown",
+        "value": "这里是题目描述"
+    },
+    "tags": [
+        "入门",
+        "输出"
+    ],
+    "input_description": {
+        "format": "html",
+        "value": "木有输入"
+    },
+    "output_description": {
+        "format": "markdown",
+        "value": "直接输出`Hello, world!`。"
+    },
+    "test_case_score": [
+        {
+            "score": 100,
+            "input_name": "1.in",
+            "output_name": "1.out"
+        }
+    ],
+    "hint": {
+        "format": "html",
+        "value": ""
+    },
+    "time_limit": 1000,
+    "memory_limit": 256,
+    "samples": [
+        {
+            "input": "",
+            "output": "Hello, world!"
+        }
+    ],
+    "template": {},
+    "spj": null,
+    "rule_type": "OI",
+    "source": "",
+    "answers": [
+        {
+            "language": "Python3",
+            "code": "print('Hello, world!')"
+        }
+    ]
+}

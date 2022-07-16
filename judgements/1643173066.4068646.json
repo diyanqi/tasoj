@@ -1,0 +1,1 @@
+{"status": "Compile Error", "problem_id": 1000, "language": "pascal", "username": "diyanqi@qq.com", "code": "var a, b: longint;\r\nbegin\r\n    readln(a,b);\r\n    writeln(a+b);\r\nend.", "msg": ""}

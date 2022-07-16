@@ -1,0 +1,214 @@
+<script src="/static/highlightjs/highlight.min.js"></script>
+<link href="/static/highlightjs/styles/vs2015.min.css" rel="stylesheet">
+<script src="/static/highlightjs/languages/cpp.min.js"></script>
+<script src="/static/highlightjs/languages/c.min.js"></script>
+<script src="/static/highlightjs/languages/python.min.js"></script>
+<script src="/static/highlightjs/languages/markdown.min.js"></script>
+<!-- <div id="temp-info-md-copy" class="mdui-invisible"></div> -->
+<script src="https://cdn.jsdelivr.net/npm/showdown@latest/dist/showdown.min.js"></script>
+<script src="/static/markdowntool.js"></script>
+<script>
+    $(function () {
+        window['origin'] = document.getElementById("test-editormd-markdown-doc").innerText;
+        var md = document.getElementById("test-editormd-markdown-doc").innerText;
+        markdown_render_dom(document.getElementById("test-editormd-view"), md);
+    });
+</script>
+
+<div class="mdui-typo">
+    <h1>
+        <button class="mdui-btn mdui-ripple" onclick='location.href="/article/list"'><i
+                class="mdui-icon mdui-icon-left material-icons">arrow_back</i>返回</button>
+    </h1>
+</div>
+<br>
+<div class="mdui-card">
+
+    <!-- 卡片头部，包含头像、标题、副标题 -->
+    <div class="mdui-card-header">
+        <img class="mdui-card-header-avatar" src="avatar.jpg" />
+        <div class="mdui-card-header-title"><a href="/user/(userid!!!)">
+                <!-- asker -->
+            </a></div>
+        <div class="mdui-card-header-subtitle">
+            <!-- asker_oneword -->
+        </div>
+    </div>
+
+    <!-- 卡片的标题和副标题 -->
+    <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">
+            <!-- title -->
+        </div>
+        <div class="mdui-card-primary-subtitle">
+            <!-- time -->
+        </div>
+    </div>
+
+    <!-- 卡片的内容 -->
+    <div class="mdui-card-content mdui-">
+        <div id="test-editormd-view" class="mdui-typo">
+            <pre class="nohighlight" id="test-editormd-markdown-doc"><!-- question --></pre>
+        </div>
+    </div>
+
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <!-- problemkkk -->
+        <button class="mdui-btn mdui-ripple" onclick="answer_this_question();">回复或评论</button>
+        <button class="mdui-btn mdui-ripple" onclick="the_same_question();">有用：
+            <!-- the_same -->
+        </button>
+        <button class="mdui-btn mdui-btn-icon mdui-float-right">
+            <i class="mdui-icon material-icons">expand_more</i>
+        </button>
+    </div>
+
+</div><br><br>
+<h1>评论与回复</h1>
+<hr>
+
+<!-- answers -->
+
+<script>
+    function getUrlsub(href) {
+        console.log(href);
+        let index = href.lastIndexOf("\/");
+        let str = href.substring(index + 1, href.length);
+        return str;
+    }
+    function the_same_question() {
+        var url = window.location.href;
+        var index = url.lastIndexOf("\/");
+        benbenid = url.substring(index + 1, url.length).split('#')[0];
+        obj = { "askid": benbenid };
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+        httpRequest.open('POST', '/helpful', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+        httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                var json = httpRequest.responseText;//获取到服务端返回的数据
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'failed') {
+                    mdui.snackbar("已经标记过啦~");
+                } else {
+                    location.reload()
+                    mdui.snackbar({
+                        message: '标记成功',
+                        buttonText: '没毛病',
+                        onClick: function () {
+                            location.reload()
+                        },
+                        onButtonClick: function () {
+                            location.reload()
+                        },
+                        onClose: function () {
+                            location.reload()
+                        }
+                    });
+                }
+            }
+        };
+    }
+    function likeit(aid) {
+        var url = window.location.href;
+        var index = url.lastIndexOf("\/");
+        benbenid = url.substring(index + 1, url.length).split('#')[0];
+        obj = { "askid": benbenid, "aid": aid };
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+        httpRequest.open('POST', '/art_like', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+        httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                var json = httpRequest.responseText;//获取到服务端返回的数据
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'failed') {
+                    mdui.snackbar("已经顶过啦~");
+                } else {
+                    location.reload()
+                    mdui.snackbar({
+                        message: '赞好了',
+                        buttonText: '没毛病',
+                        onClick: function () {
+                            location.reload()
+                        },
+                        onButtonClick: function () {
+                            location.reload()
+                        },
+                        onClose: function () {
+                            location.reload()
+                        }
+                    });
+                }
+            }
+        };
+    }
+    function answer_this_question() {
+        mdui.dialog({
+            title: '撰写评论',
+            content: `<div style="height:355px;">
+      <div id="test-editor">
+                            <textarea id="inp-content" style="display:none;"></textarea>
+                        </div></div>
+                        <div style="float:right;"><button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" onclick="send_reply();">回复</button></div>`,
+            buttons: []
+        });
+        $(function () {
+            var editor = editormd("test-editor", {
+                height: '350px',
+                syncScrolling: "single",
+                emoji: true,
+                //启动本地图片上传功能
+                imageUpload: true,
+                watch: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
+                path: "/static/editor.md/lib/",
+                imageUploadURL: "/upload", //文件提交请求路径
+                saveHTMLToTextarea: true, //注意3：这个配置，方便post提交表单
+                previewTheme: "dark",//预览主题样式 黑色
+            });
+        })
+    }
+    function send_reply() {
+        var url = window.location.href;
+        var index = url.lastIndexOf("\/");
+        benbenid = url.substring(index + 1, url.length).split('#')[0];
+        obj = { 'msg': document.getElementById("inp-content").innerText, "askid": benbenid };
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+        httpRequest.open('POST', '/the_comment', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+        httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                var json = httpRequest.responseText;//获取到服务端返回的数据
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'failed') {
+                    mdui.snackbar("发送失败……");
+                } else {
+                    location.reload()
+                    mdui.snackbar({
+                        message: '发送成功',
+                        buttonText: '啊对对对',
+                        onClose: function () {
+                            location.reload()
+                        }
+                    });
+                }
+            }
+        };
+    }
+</script>
+
+
+
+
+
+<script src="/static/editor.md/lib/marked.min.js"></script>
+<!-- 第三方界面样式文件google -->
+<script src="/static/google-code-prettify/prettify.js"></script>
+<script src="/static/editor.md/lib/underscore.min.js"></script>
+<script src="/static/editor.md/lib/sequence-diagram.min.js"></script>
+<script src="/static/editor.md/lib/flowchart.min.js"></script>
+<script src="/static/editor.md/editormd.js"></script>

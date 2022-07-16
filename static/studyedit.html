@@ -1,0 +1,142 @@
+
+<style>
+    a {
+        color: #ff4081;
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        text-decoration: none;
+        vertical-align: top;
+        outline: 0;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .mdui-typo a::before {
+        position: absolute;
+        top: auto;
+        bottom: 1px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #ff4081;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+        content: ' ';
+    }
+</style>
+<div class="mdui-row">
+    <div class="mdui-card mdui-hoverable mdui-col-sm-12 mdui-col-xs-12">
+        <div class="mdui-card-primary">
+            <div>
+                <div class="mdui-row-xs-1 mdui-row-sm-2">
+                    <div class="mdui-col">
+                        <div class="mdui-card-primary-title" style="float:left;">学习列表<button class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="newp();">新建一个</button></div>
+                    </div>
+                    <div class="mdui-col">
+                        <div class="mdui-textfield mdui-textfield-expandable mdui-float-right">
+                            <button class="mdui-textfield-icon mdui-btn mdui-btn-icon"><i
+                                    class="mdui-icon material-icons">arrow_forward                                </i></button>
+                            <input id="q" onkeydown="return disableTextSubmit(event)" class="mdui-textfield-input"
+                                type="text" placeholder="直接跳转题单(题单序号)" style="cursor:text;">
+                            <button class="mdui-textfield-close mdui-btn mdui-btn-icon"><i
+                                    class="mdui-icon material-icons">close</i></button>
+                        </div>
+                        <script>
+                            function disableTextSubmit(e) {
+                                if (e.keyCode == 13) {
+                                    location.href = "/admin/studyedit/" + document.getElementById("q").value;
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdui-table-fluid mdui-shadow-0">
+            <table class="mdui-table mdui-table-hoverable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>内容数量</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr onclick="window.location='/problem/1000'" style="cursor:pointer;">
+                    <td></td>
+                    <td>1000</td>
+                    <td>A+B问题</td>
+                    <td><div class="mdui-chip">
+                        <span class="mdui-chip-title">入门</span>
+                      </div></td>
+                    <td>100%</td>
+                </tr> -->
+                    <!-- lists -->
+                </tbody>
+            </table>
+        </div>
+        <div style="float:right;">
+            <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="back();">
+                <i class="mdui-icon material-icons">arrow_back</i>
+            </button>
+            <button class="mdui-btn mdui-btn-icon mdui-ripple" onclick="forward();">
+                <i class="mdui-icon material-icons">arrow_forward</i>
+            </button>
+        </div>
+        <br>
+    </div>
+</div>
+<script>
+    function newp() {
+        obj = {};
+        console.log(obj);
+        var httpRequest = new XMLHttpRequest();//第一步：创建需要的对象
+        httpRequest.open('POST', '/admin/newstudy', true); //第二步：打开连接/***发送json格式文件必须设置请求头 ；如下 - */
+        httpRequest.setRequestHeader("Content-type", "application/json");//设置请求头 注：post方式必须设置请求头（在建立连接后设置请求头）var obj = { name: 'zhansgan', age: 18 };
+        httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+        /**
+         * 获取数据后的处理程序
+         */
+        httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {//验证请求是否发送成功
+                var json = httpRequest.responseText;//获取到服务端返回的数据
+                console.log(kk = JSON.parse(json));
+                if (kk['status'] == 'success') {
+                    mdui.snackbar("新建学习题单"+String(kk['pid'])+"成功");
+                } else {
+                    mdui.snackbar("新建失败");
+                }
+            }
+        };
+    }
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+    function back() {
+        if (getQueryVariable("page") == false) {
+            mdui.snackbar("已经是第一页了");
+            return;
+        }
+        if (getQueryVariable("page") != "1")
+            location.href = "/admin/studyedit?page=" + String(Number(getQueryVariable("page")) - 1);
+        else
+            mdui.snackbar("已经是第一页了");
+    }
+    function forward() {
+        if (getQueryVariable("page") == false)
+            location.href = "/admin/studyedit?page=2";
+        else
+            location.href = "/admin/studyedit?page=" + String(Number(getQueryVariable("page")) + 1);
+    }
+</script>

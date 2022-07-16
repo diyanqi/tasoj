@@ -1,0 +1,1 @@
+{"status": "Compile Error", "problem_id": 1000, "language": "cpp", "username": "diyanqi@qq.com", "code": "#include<bits/stdc++.h>\r\nusing namespace std;\r\nint main(){\r\n    int a,b;\r\n    cin>>a>>b;\r\n    cout<<a+b;\r\n    return 0;\r\n}", "msg": ""}

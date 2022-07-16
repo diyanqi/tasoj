@@ -1,0 +1,14 @@
+{
+    "title":"数组与字符串",
+    "subtitle":"数组与字符串是常用的数据结构。",
+    "image":"/image/20220305172216.gif",
+    "introduction":"如果你学了数组，那么你会变得很强，因为有一位刚学完数组的同学和一位学了2年的同学CSP分数考得一样。",
+    "content":[
+        {"type":"outerlink","title":"什么是数组","link":"https://baike.baidu.com/item/%E6%95%B0%E7%BB%84/3794097"},
+        {"type":"outerlink","title":"字符串又是什么","link":"https://baike.baidu.com/item/%E5%AD%97%E7%AC%A6%E4%B8%B2"},
+        {"type":"problem","title":"简单来说","link":"/problem/1003"},
+        {"type":"problem","title":"更进一步","link":"/problem/1012"},
+        {"type":"problem","title":"点我试试？","link":"/problem/1013"},
+        {"type":"problem","title":"概率问题","link":"/problem/1014"}
+    ]
+}
